@@ -312,3 +312,9 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.welcome_card_bg{
+    background-color: rgba(255, 255, 255, 0.02);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
