@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 
-type Role = "Investor" | "Project Manager" | "UX Designer" | "Developer";
+type Role = "investor" | "manager" | "designer" | "developer";
 
 interface Question {
   id: number;
@@ -11,7 +12,7 @@ interface Question {
 }
 
 const roleQuestions: Record<Role, Question[]> = {
-  Investor: [
+  investor: [
     {
       id: 1,
       question: "What is your typical investment range per project?",
@@ -49,7 +50,7 @@ const roleQuestions: Record<Role, Question[]> = {
       options: ["Active Advisor", "Silent Investor"],
     },
   ],
-  "Project Manager": [
+  manager: [
     {
       id: 1,
       question: "What is the size of the team you usually manage?",
@@ -86,7 +87,7 @@ const roleQuestions: Record<Role, Question[]> = {
       options: ["Slack", "Teams", "Email", "Other"],
     },
   ],
-  "UX Designer": [
+  designer: [
     {
       id: 1,
       question: "What design tools do you use?",
@@ -124,7 +125,7 @@ const roleQuestions: Record<Role, Question[]> = {
       options: ["Yes", "No"],
     },
   ],
-  Developer: [
+  developer: [
     {
       id: 1,
       question: "What is your primary programming language?",
@@ -158,15 +159,17 @@ const roleQuestions: Record<Role, Question[]> = {
   ],
 };
 
-const RoleSelection: React.FC = () => {
-  const [selectedRole, setSelectedRole] = useState<Role | null>(null);
+const RoleQuestions: React.FC = () => {
+  const { role } = useAuth();
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const router = useRouter();
 
-  const handleRoleSelect = (role: Role) => {
-    setSelectedRole(role);
-    setAnswers({});
-  };
+  // Redirect if no role is found
+  useEffect(() => {
+    if (!role) {
+      router.push("/login");
+    }
+  }, [role, router]);
 
   const handleAnswerChange = (questionId: number, answer: string) => {
     setAnswers((prev) => ({
@@ -175,101 +178,119 @@ const RoleSelection: React.FC = () => {
     }));
   };
 
+  const currentRole = role as Role;
+  const questions = currentRole ? roleQuestions[currentRole] : [];
+
   const isAllAnswered =
-    selectedRole &&
-    Object.keys(answers).length === roleQuestions[selectedRole].length;
+    currentRole &&
+    questions &&
+    Object.keys(answers).length === questions.length;
+
+  const handleBack = () => {
+    router.back();
+  };
 
   const handleNext = () => {
     if (isAllAnswered) {
-      router.push("/sign-up");
+      // Save answers and redirect to dashboard
+      localStorage.setItem("roleAnswers", JSON.stringify(answers));
+
+      // Redirect based on role
+      if (currentRole === "manager") {
+        router.push("/dashboard");
+      } else if (currentRole === "developer") {
+        router.push("/dashboard/developer");
+      } else if (currentRole === "designer") {
+        router.push("/dashboard/designer");
+      } else if (currentRole === "investor") {
+        router.push("/dashboard/investor");
+      }
     }
   };
 
+  // Show loading if no role
+  if (!role) {
+    return (
+      <div className="main_bg min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  // Show message if role questions not found
+  if (!questions || questions.length === 0) {
+    return (
+      <div className="main_bg min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">Role questions not found</div>
+      </div>
+    );
+  }
+
+  const getRoleDisplayName = (role: string) => {
+    const roleNames: Record<string, string> = {
+      manager: "Project Manager",
+      developer: "Developer",
+      designer: "UX Designer",
+      investor: "Investor",
+    };
+    return roleNames[role] || role;
+  };
+
   return (
-    <div className="main_bg min-h-screen flex items-center justify-center  ">
-      <div className="p-6 ">
-        {!selectedRole && (
-          <h2 className="text-center text-white text-[32px] font-medium sm:whitespace-nowrap mb-6 sm:mb-8">
-            Select your role to personalize your experience.
-          </h2>
-        )}
-        <div className="mx-auto rounded-xl">
-          {!selectedRole ? (
-            // Role Selection Step
-            <div className="flex flex-col items-center gap-6 sm:gap-8 md:gap-10 w-full max-w-md mx-auto">
-              {(
-                [
-                  "Investor",
-                  "Project Manager",
-                  "UX Designer",
-                  "Developer",
-                ] as Role[]
-              ).map((role) => (
-                <button
-                  key={role}
-                  onClick={() => handleRoleSelect(role)}
-                  className="w-full py-4 px-6 sm:py-9 sm:px-8 role_btn_bg text-white font-semibold rounded-lg shadow-md hover:bg-[#05A265] transition-all duration-200 ease-in-out border border-[#3FD98B] cursor-pointer text-[32px] font-semibold"
-                >
-                  {role}
-                </button>
-              ))}
-            </div>
-          ) : (
-            // Questions Step
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-medium text-white mb-6 text-center">
-                Questions for {selectedRole}
-              </h2>
+    <div className="main_bg min-h-screen flex items-center justify-center">
+      <div className="p-6 w-full max-w-4xl">
+        <h2 className="text-2xl sm:text-3xl font-medium text-white mb-6 text-center">
+          Questions for {getRoleDisplayName(currentRole)}
+        </h2>
 
-              <div className="role_question_bg px-4 sm:px-[38px] py-6 sm:py-[48px] rounded-3xl  ">
-                {roleQuestions[selectedRole].map((question) => (
-                  <div key={question.id} className="mb-6">
-                    <h3 className="text-lg sm:text-xl font-semibold text-white mb-2  ">
-                      {question.question}
-                    </h3>
-                    <select
-                      onChange={(e) =>
-                        handleAnswerChange(question.id, e.target.value)
-                      }
-                      value={answers[question.id] || ""}
-                      className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-black text-white "
-                    >
-                      <option value="">Select an option</option>
-                      {question.options.map((option, index) => (
-                        <option key={index} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+        <div className="role_question_bg px-4 sm:px-[38px] py-6 sm:py-[48px] rounded-3xl">
+          {questions.map((question) => (
+            <div key={question.id} className="mb-6">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
+                {question.question}
+              </h3>
+              <select
+                onChange={(e) =>
+                  handleAnswerChange(question.id, e.target.value)
+                }
+                value={answers[question.id] || ""}
+                className="w-full py-3 px-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+              >
+                <option value="">Select an option</option>
+                {question.options.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
                 ))}
-              </div>
-
-              <div className="flex flex-col sm:flex-row justify-between items-center mt-8 gap-4 sm:gap-0">
-                <button
-                  onClick={() => setSelectedRole(null)}
-                  className="w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-white bg-gray-600 hover:bg-gray-700 transition-colors"
-                >
-                  Back
-                </button>
-                <button
-                  onClick={handleNext}
-                  disabled={!isAllAnswered}
-                  className={`w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-white transition-colors ${
-                    !isAllAnswered
-                      ? "bg-gray-500 cursor-not-allowed opacity-50"
-                      : "bg-[#05A265] hover:bg-[#048A56] focus:outline-none focus:ring-2 focus:ring-[#05A265]"
-                  }`}
-                >
-                  Next
-                </button>
-              </div>
+              </select>
             </div>
-          )}
+          ))}
+        </div>
+
+        <div className="flex justify-between items-center mt-8">
+          <button
+            onClick={handleBack}
+            className={`px-8 py-3 rounded-lg font-semibold text-white transition-colors  
+ bg-[#05A265]  cursor-pointer hover:bg-[#048A56]
+            `}
+          >
+            Prev
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={!isAllAnswered}
+            className={`px-8 py-3 rounded-lg font-semibold text-white transition-colors ${
+              !isAllAnswered
+                ? "bg-gray-500 cursor-not-allowed opacity-50"
+                : "bg-[#05A265] hover:bg-[#048A56] focus:outline-none focus:ring-2 focus:ring-[#05A265] cursor-pointer"
+            }`}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-export default RoleSelection;
+export default RoleQuestions;

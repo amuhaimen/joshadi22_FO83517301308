@@ -1,17 +1,19 @@
-'use client';
-// app/context/AuthContext.tsx
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { useRouter } from 'next/navigation';  // Import the useRouter hook
+"use client";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 // Context Type Definition
 type AuthContextType = {
-  role: string | null;  // role will be stored here, can be 'admin', 'developer', etc.
-  setRole: React.Dispatch<React.SetStateAction<string | null>>;  // Function to set role
-  login: (email: string, password: string) => void;  // Login function
-  logout: () => void;  // Logout function
+  role: string | null;
+  setRole: React.Dispatch<React.SetStateAction<string | null>>;
+  login: (email: string, password: string) => void;
+  logout: () => void;
+  isAuthenticated: boolean; // New property to check if user is authenticated
+  checkAuth: () => boolean; // Function to check authentication status
 };
 
 type AuthProviderProps = {
-  children: React.ReactNode;  // Correctly define the type for children
+  children: React.ReactNode;
 };
 
 // Creating the context
@@ -19,55 +21,85 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Context provider component
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [role, setRole] = useState<string | null>(null);  // State to hold role
-  const [loading,setLoading]=useState<boolean>(false);
-  const router = useRouter(); // Initialize useRouter hook for redirection
+  const [role, setRole] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const router = useRouter();
 
   // Load role from localStorage on initial render
   useEffect(() => {
-    const savedRole = localStorage.getItem('role');
+    const savedRole = localStorage.getItem("role");
     if (savedRole) {
-      setRole(savedRole);  // Set the role from localStorage
+      setRole(savedRole);
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
     }
+    setLoading(false);
   }, []);
+
+  // Function to check if user is authenticated
+  const checkAuth = (): boolean => {
+    const savedRole = localStorage.getItem("role");
+    if (savedRole) {
+      setRole(savedRole);
+      setIsAuthenticated(true);
+      return true;
+    } else {
+      setRole(null);
+      setIsAuthenticated(false);
+      return false;
+    }
+  };
 
   // Login function
   const login = (email: string, password: string) => {
     let newRole: string | null = null;
-    setLoading(true);  
+    setLoading(true);
+
     // Checking demo credentials for 4 roles
-    if (email === 'admin@example.com' && password === 'manager123') newRole = 'manager';
-    else if (email === 'developer@example.com' && password === 'dev123') newRole = 'developer';
-    else if (email === 'designer@example.com' && password === 'designer123') newRole = 'designer';
-    else if (email === 'investor@example.com' && password === 'investor123') newRole = 'investor';
+    if (email === "admin@example.com" && password === "manager123")
+      newRole = "manager";
+    else if (email === "developer@example.com" && password === "dev123")
+      newRole = "developer";
+    else if (email === "designer@example.com" && password === "designer123")
+      newRole = "designer";
+    else if (email === "investor@example.com" && password === "investor123")
+      newRole = "investor";
     else {
-      alert('Invalid credentials');
+      alert("Invalid credentials");
+      setLoading(false);
       return;
     }
 
     setRole(newRole);
-    localStorage.setItem('role', newRole);  // Save the role to localStorage
+    localStorage.setItem("role", newRole);
+    setIsAuthenticated(true);
     setLoading(false);
   };
 
   // Logout function with redirection
   const logout = () => {
-    setRole(null);  // Reset role to null on logout
-    localStorage.removeItem('role');  // Remove role from localStorage
-    router.push('/');  // Redirect to the login page after logging out
+    setRole(null);
+    setIsAuthenticated(false);
+    localStorage.removeItem("role");
+    localStorage.removeItem("roleAnswers"); // Also clear role answers
+    router.push("/");
   };
 
   return (
-
     <>
-
-    {
-      loading ? <h1>Loading....</h1>
-      :
-    <AuthContext.Provider value={{ role, setRole, login, logout }}>
-      {children}
-    </AuthContext.Provider>
-    }
+      {loading ? (
+        <div className="main_bg min-h-screen flex items-center justify-center">
+          <div className="text-white text-xl">Loading...</div>
+        </div>
+      ) : (
+        <AuthContext.Provider
+          value={{ role, setRole, login, logout, isAuthenticated, checkAuth }}
+        >
+          {children}
+        </AuthContext.Provider>
+      )}
     </>
   );
 };

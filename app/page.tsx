@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from "react";
-import {   useAuth } from "./context/AuthContext";
+import { useAuth } from "./context/AuthContext";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
@@ -15,16 +15,15 @@ export default function LoginPage() {
     // Call the login function
     login(email, password);
 
-    // Redirect based on the role
-    // Assuming roles: manager, developer, designer, investor
+    // Redirect to role questions based on the role
     if (email === 'admin@example.com' && password === 'manager123') {
-        router.push('/dashboard');
+        router.push('/welcome');
     } else if (email === 'developer@example.com' && password === 'dev123') {
-      router.push('/dashboard/developer');
+      router.push('/welcome');
     } else if (email === 'designer@example.com' && password === 'designer123') {
-      router.push('/dashboard/designer');
+      router.push('/welcome');
     } else if (email === 'investor@example.com' && password === 'investor123') {
-      router.push('/dashboard/investor');
+      router.push('/welcome');
     }
   };
 
