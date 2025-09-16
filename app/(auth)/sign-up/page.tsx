@@ -96,7 +96,7 @@ export default function page() {
 
           <input
             type="submit"
-            value="Submit"
+            value="Sign Up"
             className=" auth_btn_bg w-full py-4 px-5 text-white text-lg font-semibold rounded-xl cursor-pointer"
           />
         </div>
