@@ -319,4 +319,9 @@
     background-repeat: no-repeat;
 }
 
+.auth_btn_bg{
+  background-image: linear-gradient(180deg, #3FD98B 0%, #21AF68 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
  
