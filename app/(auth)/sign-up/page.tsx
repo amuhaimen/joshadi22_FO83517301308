@@ -2,7 +2,7 @@
  
  export default function page() {
    return (
-     <div>sign up</div>
+     <div className=' main_bg h-screen'>sign up</div>
    )
  }
  
