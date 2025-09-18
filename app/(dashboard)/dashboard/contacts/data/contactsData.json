@@ -3,60 +3,68 @@
     "title": "Acme Redesign",
     "dateRange": "Jan 10 - Apr 30",
     "timelineStatus": "Update timeline",
+    "statusType":"normal",
     "message": "Received a message",
     "amount": "$12,500"
   },
   {
-    "title": "Project Alpha",
+    "title": "Delta App",
     "dateRange": "Feb 1 - Mar 15",
-    "timelineStatus": "Finalizing design",
-    "message": "New message received",
+    "timelineStatus": "Delayed",
+    "statusType":"delayed",
+    "message": "Can you send me the..",
     "amount": "$8,200"
   },
   {
-    "title": "Beta Launch",
+    "title": "Freelance UX Audit",
     "dateRange": "Mar 5 - Apr 5",
-    "timelineStatus": "Reviewing feedback",
+    "timelineStatus": "In Review",
+    "statusType":"normal",
     "message": "Client has left feedback",
     "amount": "$10,300"
   },
   {
-    "title": "Gamma Initiative",
+    "title": "Web App Design",
     "dateRange": "Jan 15 - Feb 20",
-    "timelineStatus": "Design phase",
+    "timelineStatus": "Update scope",
+    "statusType":"normal",
     "message": "Pending approval",
     "amount": "$9,750"
   },
   {
-    "title": "Delta Expansion",
+    "title": "Rebranding Concept",
     "dateRange": "Feb 25 - Apr 10",
-    "timelineStatus": "Final revisions",
-    "message": "Waiting for final content",
+    "timelineStatus": "Update Content",
+    "statusType":"update",
+    
     "amount": "$15,000"
   },
   {
-    "title": "Zeta Rebranding",
+    "title": "Marketing Website",
     "dateRange": "Mar 12 - Apr 30",
-    "timelineStatus": "Design review",
-    "message": "Client has requested changes",
+    "timelineStatus": "All caught up",
+     "statusType":"normal",
+ 
     "amount": "$7,800"
   },
   {
-    "title": "Theta Strategy",
+    "title": "Rebranding Concept",
     "dateRange": "Feb 20 - Mar 25",
     "timelineStatus": "Initial concept stage",
+     "statusType":"normal",
     "message": "Message sent",
     "amount": "$6,400"
   },
   {
-    "title": "Sigma Project",
+    "title": "Delta App",
     "dateRange": "Jan 5 - Jan 30",
     "timelineStatus": "In progress",
+     "statusType":"normal",
     "message": "Received a reply",
     "amount": "$11,000"
   },
   {
-    "title": "Omega Development",
+    "title": "Freelance UX Audit",
     "dateRange": "Feb 1 - Mar 1",
     "timelineStatus": "Final testing",
     "message": "Awaiting client feedback",
@@ -66,6 +74,7 @@
     "title": "Pi Product Launch",
     "dateRange": "Jan 20 - Feb 28",
     "timelineStatus": "Phase 1 completed",
+     "statusType":"normal",
     "message": "Waiting for approval",
     "amount": "$18,500"
   },
@@ -73,6 +82,7 @@
     "title": "Kappa Research",
     "dateRange": "Mar 10 - Apr 5",
     "timelineStatus": "Research and analysis",
+     "statusType":"normal",
     "message": "Update received",
     "amount": "$5,600"
   },
@@ -80,6 +90,7 @@
     "title": "Lambda Operations",
     "dateRange": "Jan 1 - Jan 25",
     "timelineStatus": "Project setup",
+     "statusType":"normal",
     "message": "Client is reviewing",
     "amount": "$9,000"
   }

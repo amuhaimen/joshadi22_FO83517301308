@@ -13,7 +13,15 @@ export default function page() {
         <div className=' bg-[#161918] p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5 rounded-2xl'>
        {
         contactsData.map((item,index)=>(
-            <ContactCard key={index} title={item.title} dateRange={item.dateRange} timelineStatus={item.timelineStatus} message={item.message} amount={item.amount}  />
+            <ContactCard 
+                key={index} 
+                title={item.title ?? ''} 
+                dateRange={item.dateRange ?? ''} 
+                timelineStatus={item.timelineStatus ?? ''} 
+                message={item.message ?? ''} 
+                amount={item.amount ?? ''}  
+                statusType={item.statusType ?? ''} 
+            />
         ))
        }
 
