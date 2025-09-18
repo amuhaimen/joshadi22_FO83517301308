@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function page() {
@@ -55,6 +56,7 @@ export default function page() {
             className=" auth_btn_bg w-full py-4 px-5 text-white text-lg font-semibold rounded-xl cursor-pointer"
           />
         </div>
+          <p className=' text-base text-[#E9E9EA] mt-8 text-center'>Already have a account? <Link href='/sign-up' className=' font-semibold text-[#21AF68] ml-2 cursor-pointer'>sign up</Link> </p>
       </div>
     </div>
   )

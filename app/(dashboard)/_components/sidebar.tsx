@@ -8,6 +8,7 @@ import QuestionIcon from '@/public/sidebar/icons/Question';
 import logo from '@/public/header/images/logo.png'; 
 import Image from "next/image"; 
 import PhoneIcon from "@/public/sidebar/icons/PhoneIcon";
+import ContactsIcon from "@/public/sidebar/icons/ContactsIcon";
 
 // Menu items for different roles
 const menuItems: {
@@ -30,6 +31,7 @@ const menuItems: {
     { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
     { title: "UI / UX Designer", icon: UiIcon, href: "/dashboard/ui_ux_designer" },
     { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+    {title:'Contacts',icon: ContactsIcon,href:"/dashboard/contacts"}
   ],
   developer: [
     { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/developer" },
