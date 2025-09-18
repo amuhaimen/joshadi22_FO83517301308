@@ -30,8 +30,8 @@ const menuItems: {
     { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/designer" },
     { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
     { title: "UI / UX Designer", icon: UiIcon, href: "/dashboard/ui_ux_designer" },
+    {title:'Contacts',icon: ContactsIcon,href:"/dashboard/contacts"},
     { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
-    {title:'Contacts',icon: ContactsIcon,href:"/dashboard/contacts"}
   ],
   developer: [
     { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/developer" },

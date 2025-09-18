@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Acme Redesign",
+    "dateRange": "Jan 10 - Apr 30",
+    "timelineStatus": "Update timeline",
+    "message": "Received a message",
+    "amount": "$12,500"
+  },
+  {
+    "title": "Project Alpha",
+    "dateRange": "Feb 1 - Mar 15",
+    "timelineStatus": "Finalizing design",
+    "message": "New message received",
+    "amount": "$8,200"
+  },
+  {
+    "title": "Beta Launch",
+    "dateRange": "Mar 5 - Apr 5",
+    "timelineStatus": "Reviewing feedback",
+    "message": "Client has left feedback",
+    "amount": "$10,300"
+  },
+  {
+    "title": "Gamma Initiative",
+    "dateRange": "Jan 15 - Feb 20",
+    "timelineStatus": "Design phase",
+    "message": "Pending approval",
+    "amount": "$9,750"
+  },
+  {
+    "title": "Delta Expansion",
+    "dateRange": "Feb 25 - Apr 10",
+    "timelineStatus": "Final revisions",
+    "message": "Waiting for final content",
+    "amount": "$15,000"
+  },
+  {
+    "title": "Zeta Rebranding",
+    "dateRange": "Mar 12 - Apr 30",
+    "timelineStatus": "Design review",
+    "message": "Client has requested changes",
+    "amount": "$7,800"
+  },
+  {
+    "title": "Theta Strategy",
+    "dateRange": "Feb 20 - Mar 25",
+    "timelineStatus": "Initial concept stage",
+    "message": "Message sent",
+    "amount": "$6,400"
+  },
+  {
+    "title": "Sigma Project",
+    "dateRange": "Jan 5 - Jan 30",
+    "timelineStatus": "In progress",
+    "message": "Received a reply",
+    "amount": "$11,000"
+  },
+  {
+    "title": "Omega Development",
+    "dateRange": "Feb 1 - Mar 1",
+    "timelineStatus": "Final testing",
+    "message": "Awaiting client feedback",
+    "amount": "$13,200"
+  },
+  {
+    "title": "Pi Product Launch",
+    "dateRange": "Jan 20 - Feb 28",
+    "timelineStatus": "Phase 1 completed",
+    "message": "Waiting for approval",
+    "amount": "$18,500"
+  },
+  {
+    "title": "Kappa Research",
+    "dateRange": "Mar 10 - Apr 5",
+    "timelineStatus": "Research and analysis",
+    "message": "Update received",
+    "amount": "$5,600"
+  },
+  {
+    "title": "Lambda Operations",
+    "dateRange": "Jan 1 - Jan 25",
+    "timelineStatus": "Project setup",
+    "message": "Client is reviewing",
+    "amount": "$9,000"
+  }
+]
