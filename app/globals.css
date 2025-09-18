@@ -324,4 +324,15 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.contact_card_timeline_bg{
+  background-image: linear-gradient(90deg, rgba(24, 56, 39, 0.60) 0.01%, rgba(25, 57, 40, 0.06) 127.76%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
  
+.contact_bg{
+  background-image: linear-gradient(112deg, rgba(0, 0, 0, 0.00) -9.83%, #191919 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
