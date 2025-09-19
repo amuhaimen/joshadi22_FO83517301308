@@ -9,6 +9,7 @@ import logo from '@/public/header/images/logo.png';
 import Image from "next/image"; 
 import PhoneIcon from "@/public/sidebar/icons/PhoneIcon";
 import ContactsIcon from "@/public/sidebar/icons/ContactsIcon";
+import InvestmentIcon from "@/public/sidebar/icons/InvestmentIcon";
 
 // Menu items for different roles
 const menuItems: {
@@ -18,7 +19,8 @@ const menuItems: {
     { title: "Dashboard", icon: DashboardIcon, href: "/dashboard" },
     { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
     { title: "Investor", icon: InvestorIcon, href: "/dashboard/investor" },
-    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" }
+    { title: "Investment Ideas", icon: InvestmentIcon, href: "/dashboard/investment-ideas" },
+    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
   ],
   investor: [
     { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/investor" },
@@ -30,7 +32,7 @@ const menuItems: {
     { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/designer" },
     { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
     { title: "UI / UX Designer", icon: UiIcon, href: "/dashboard/ui_ux_designer" },
-    {title:'Contacts',icon: ContactsIcon,href:"/dashboard/contacts"},
+    {title:'Contracts',icon: ContactsIcon,href:"/dashboard/contracts"},
     { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
   ],
   developer: [
