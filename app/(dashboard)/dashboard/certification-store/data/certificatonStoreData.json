@@ -1,0 +1,56 @@
+[
+  {
+    "image": "https://i.ibb.co/1JvPgBk9/xd.png",
+    "title": "React Developer Certificate",
+    "description": "Necessary for job needs",
+    "price": "$20.00"
+  },
+  {
+    "image": "https://i.ibb.co/6pBwTZ8/ci-cd.png",
+    "title": "JavaScript Basics Certificate",
+    "description": "Learn the fundamentals of JavaScript",
+    "price": "$15.00"
+  },
+  {
+    "image": "https://i.ibb.co/21yJV72z/aws.png",
+    "title": "Full Stack Web Developer Certificate",
+    "description": "Master full-stack development",
+    "price": "$100.00"
+  },
+  {
+    "image": "",
+    "title": "Front-End Development Certificate",
+    "description": "Learn HTML, CSS, and JavaScript",
+    "price": "$30.00"
+  },
+  {
+    "image": "",
+    "title": "Backend Developer Certificate",
+    "description": "Learn server-side development with Node.js",
+    "price": "$50.00"
+  },
+  {
+    "image": "",
+    "title": "UI/UX Design Certificate",
+    "description": "Learn design principles for the web",
+    "price": "$40.00"
+  },
+  {
+    "image": "https://i.ibb.co/DgHZ5twG/kubernates.png",
+    "title": "Data Science Certificate",
+    "description": "Analyze and interpret complex data",
+    "price": "$120.00"
+  },
+  {
+    "image": "https://i.ibb.co/fz7Ljv4v/kurvernines.png",
+    "title": "Mobile App Development Certificate",
+    "description": "Learn how to create mobile applications",
+    "price": "$80.00"
+  },
+  {
+    "image": "https://i.ibb.co/6pBwTZ8/ci-cd.png",
+    "title": "Machine Learning Certificate",
+    "description": "Learn the basics of machine learning",
+    "price": "$150.00"
+  }
+]
