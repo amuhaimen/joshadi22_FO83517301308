@@ -20,6 +20,7 @@ const menuItems: {
     { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
     { title: "Investor", icon: InvestorIcon, href: "/dashboard/investor" },
     { title: "Investment Ideas", icon: InvestmentIcon, href: "/dashboard/investment-ideas" },
+    { title: "Certification Store", icon:  DashboardIcon, href: "/dashboard/certification-store" },
     { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
   ],
   investor: [
