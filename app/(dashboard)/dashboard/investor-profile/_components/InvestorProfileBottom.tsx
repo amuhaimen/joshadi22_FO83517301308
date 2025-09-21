@@ -1,14 +1,11 @@
 import React from "react";
+import Image from "next/image";
 import cropImg from "@/public/ui-designer-profile/icons/crop.svg";
 import xyzImg from "@/public/ui-designer-profile/icons/xyz.svg";
 import defImg from "@/public/ui-designer-profile/icons/def.svg";
 import ghiImg from "@/public/ui-designer-profile/icons/Ghi.svg";
-import xdImg from "@/public/ui-designer-profile/images/xd.png";
-import figmaImg from "@/public/ui-designer-profile/images/figma.png";
-import sketchImg from "@/public/ui-designer-profile/images/sketch.png";
-import Image from "next/image";
 
-export default function UIProfileBottom() {
+export default function InvestorProfileBottom() {
   return (
     <div className=" flex flex-col lg:flex-row items-start gap-4 mt-6">
       {/* =========================== one =========================== */}
@@ -25,9 +22,9 @@ export default function UIProfileBottom() {
               </div>
               <div>
                 <h3 className=" text-base text-white font-semibold">
-                  ABC corp
+                  Alpha Ventures
                 </h3>
-                <p className=" text-white text-base">Lead UX Designer</p>
+                <p className=" text-white text-base">Lead Investor</p>
               </div>
             </div>
             <div className=" bg-[#313131]/20 border border-[#5c5c5c] py-4 px-3  flex items-center gap-3 rounded-[10px] flex-1 w-full">
@@ -36,9 +33,9 @@ export default function UIProfileBottom() {
               </div>
               <div>
                 <h3 className=" text-base text-white font-semibold">
-                  XYZ Agency
+                  Zenith Fund
                 </h3>
-                <p className=" text-white text-base">Senior UX Designer</p>
+                <p className=" text-white text-base">Senior Advisor</p>
               </div>
             </div>
           </div>
@@ -55,7 +52,7 @@ export default function UIProfileBottom() {
               </div>
               <div>
                 <h3 className=" text-base text-white font-semibold">DEF lnc</h3>
-                <p className=" text-white text-base">Lead UX Designer</p>
+                <p className=" text-white text-base">Portfolio Manager</p>
               </div>
             </div>
             <div className=" bg-[#313131]/20 border border-[#5c5c5c] py-4 px-3  flex items-center gap-3 rounded-[10px] flex-1 w-full">
@@ -64,7 +61,7 @@ export default function UIProfileBottom() {
               </div>
               <div>
                 <h3 className=" text-base text-white font-semibold">GHI Ltd</h3>
-                <p className=" text-white text-base">Senior UX Designer</p>
+                <p className=" text-white text-base">Summit Investments</p>
               </div>
             </div>
           </div>
@@ -72,26 +69,40 @@ export default function UIProfileBottom() {
         {/* three */}
         <div>
           <h2 className=" text-white text-xl font-semibold">Skills</h2>
-          <div className=" flex items-center gap-7 mt-3">
-            <div className=" flex flex-col items-center px-7">
-              <Image src={xdImg} alt=" xd logo" />
-              <h2 className=" text-base text-white font-semibold mt-3">
-                Adobe XD
-              </h2>
-            </div>
-            <div className=" flex flex-col items-center px-7">
-              <Image src={figmaImg} alt=" figma logo" />
-              <h2 className=" text-base text-white font-semibold mt-3">
-                Figma
-              </h2>
-            </div>
-            <div className=" flex flex-col items-center px-7">
-              <Image src={sketchImg} alt=" sketch logo " />
-              <h2 className=" text-base text-white font-semibold mt-3">
-                Sketch
-              </h2>
-            </div>
-          </div>
+          <ul className=" space-y-1 mt-3">
+            <li className=" flex items-center gap-2">
+              <span className=" w-1.5 h-1.5 bg-[#3FD98B] rounded-full"></span>
+              <p className=" text-[#D2D2D5] text-base">Financial Modeling</p>
+            </li>
+            <li className=" flex items-center gap-2">
+              <span className=" w-1.5 h-1.5 bg-[#3FD98B] rounded-full"></span>
+              <p className=" text-[#D2D2D5] text-base">Risk Management</p>
+            </li>
+            <li className=" flex items-center gap-2">
+              <span className=" w-1.5 h-1.5 bg-[#3FD98B] rounded-full"></span>
+              <p className=" text-[#D2D2D5] text-base">
+                Market Research & Analysis
+              </p>
+            </li>
+            <li className=" flex items-center gap-2">
+              <span className=" w-1.5 h-1.5 bg-[#3FD98B] rounded-full"></span>
+              <p className=" text-[#D2D2D5] text-base">
+                Portfolio Diversification
+              </p>
+            </li>
+            <li className=" flex items-center gap-2">
+              <span className=" w-1.5 h-1.5 bg-[#3FD98B] rounded-full"></span>
+              <p className=" text-[#D2D2D5] text-base">
+                Venture Capital & Private Equity
+              </p>
+            </li>
+            <li className=" flex items-center gap-2">
+              <span className=" w-1.5 h-1.5 bg-[#3FD98B] rounded-full"></span>
+              <p className=" text-[#D2D2D5] text-base">
+                Negotiation & Deal Structuring
+              </p>
+            </li>
+          </ul>
         </div>
         {/* four */}
         <div>
@@ -99,19 +110,19 @@ export default function UIProfileBottom() {
           <div className="mt-3 flex flex-col lg:flex-row justify-center items-center gap-4 ">
             <div className="py-4 px-3 common_btn_bg border border-[#276d4a] rounded-[10px] text-center flex-1 w-full">
               <h2 className="text-white text-base font-semibold">
-                Certified UX <br /> Designer
+                Chartered Financial Analyst (CFA)
               </h2>
               <p className="text-[#E9E9EA] text-sm">2025</p>
             </div>
             <div className="py-4 px-3 common_btn_bg border border-[#276d4a] rounded-[10px] text-center flex-1 w-full">
               <h2 className="text-white text-base font-semibold">
-                Google UX <br /> Design
+                Certified Investment Manager
               </h2>
               <p className="text-[#E9E9EA] text-sm">2025</p>
             </div>
             <div className="py-4 px-3 common_btn_bg border border-[#276d4a] rounded-[10px] text-center flex-1 w-full">
               <h2 className="text-white text-base font-semibold">
-                Accessibility <br /> Certification
+                Risk Management Certification
               </h2>
               <p className="text-[#E9E9EA] text-sm">2025</p>
             </div>
@@ -125,61 +136,64 @@ export default function UIProfileBottom() {
           {/* one */}
           <div className=" mt-2">
             <h3 className=" text-lg text-white font-semibold">
-              Senior Ul UX Designer
+              Senior Investment Manager
             </h3>
-            <p className=" text-[#D2D2D5] text-base ">
-              Ultimate Wedding Planner, Nasshyilllg II. / May 2016- Present
+            <p className=" text-[#D2D2D5] text-base mt-2">
+              Global Growth Partners | Jan 2015 – Present
             </p>
             <ul className=" list-disc list-outside ml-6 space-y-1 mt-2">
               <li className=" text-[#D2D2D5] text-base">
-                Oversee all aspects of UX design for making Llj design/UM video,
-                or <br /> mobile design team experience on launch
+                Manage a portfolio of high-value investments across multiple{" "}
+                <br /> industries.
               </li>
               <li className=" text-[#D2D2D5] text-base">
-                Manage. application develops developers already well on view the <br />
-                mobile   app. creating a five-star rated mobile app based on <br />
-                development
+                Lead funding rounds for early-stage startups and scale-ups.
               </li>
               <li className=" text-[#D2D2D5] text-base">
-                Conduct market research on user needs and add redefine
-                integration <br /> and treasures for improving ove sleeps and
-                customization mobile <br /> application a leveler note sites of launch
+                Analyze financial reports, business models, and market dynamics{" "}
+                <br /> before investment.
+              </li>
+              <li className=" text-[#D2D2D5] text-base">
+                Build strong networks with entrepreneurs, founders, and other{" "}
+                <br /> investors.
+              </li>
+              <li className=" text-[#D2D2D5] text-base">
+                Optimize risk-adjusted returns and ensure sustainable portfolio{" "}
+                <br /> growth.
               </li>
             </ul>
           </div>
           <div className=" mt-2">
-            <h3 className=" text-lg text-white font-semibold">skills</h3>
+            <h3 className=" text-lg text-white font-semibold">Key skills</h3>
 
             <ul className=" list-disc list-outside ml-6 space-y-1 mt-2">
               <li className=" text-[#D2D2D5] text-base">
-                UX design at S).a i or Engiineeering/, Nlashidv, TN
+                Venture Capital Strategy
               </li>
               <li className=" text-[#D2D2D5] text-base">
-                Mobile application development
+                Private Equity Deals
               </li>
+              <li className=" text-[#D2D2D5] text-base">Strategic Planning</li>
               <li className=" text-[#D2D2D5] text-base">
-                User-centered design
-              </li>
-              <li className=" text-[#D2D2D5] text-base">Wireframing</li>
-              <li className=" text-[#D2D2D5] text-base">
-                Cross-functional leadership
+                Cross-border Investments
               </li>
             </ul>
           </div>
           <div className=" mt-2">
             <h3 className=" text-lg text-white font-semibold">
-              Certifications
+              Additional Achievements
             </h3>
 
             <ul className=" list-disc list-outside ml-6 space-y-1 mt-2">
               <li className=" text-[#D2D2D5] text-base">
-                Certified User Experience Analyst (CXA) <br /> I April 2019
+                Successfully led funding for 20+ startups, 12 of which scaled
+                beyond Series C.
               </li>
               <li className=" text-[#D2D2D5] text-base">
-                NN/g UX Certification <br />I August 2017
+                Increased portfolio ROI by 40% over the past 3 years.
               </li>
               <li className=" text-[#D2D2D5] text-base">
-                Google UX Deign Professional Certificate <br /> I October 2015
+                Featured as a guest speaker at Global Investment Summit 2024.
               </li>
             </ul>
           </div>

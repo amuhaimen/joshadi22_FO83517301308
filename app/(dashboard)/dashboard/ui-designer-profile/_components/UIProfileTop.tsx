@@ -4,7 +4,7 @@ import profileImg from '@/public/ui-designer-profile/images/profile-pic.png'
 
 export default function UIProfileTop() {
   return (
-    <div className=' flex items-end gap-36'>
+    <div className=' flex flex-col lg:flex-row lg:items-end gap-3.5 lg:gap-36'>
       <div className=' flex items-center gap-6'>
         <div>
           <Image src={profileImg} alt=' profile img' className=' rounded-full'/>
