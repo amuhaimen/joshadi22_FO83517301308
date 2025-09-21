@@ -347,3 +347,8 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+/* ui profile styles */
+.ui_profile_icons_bg{
+  background-color: rgba(121, 220, 164, 0.05);
+}
