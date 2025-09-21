@@ -24,7 +24,7 @@ export default function page() {
             <CertificationStoreCard key={index} image={item.image} title={item.title} description={item.description} price={item.price}/>
           ))
         }
-         {/* <CertificationStoreCard/> */}
+          
       </div>
     </div>
   );
