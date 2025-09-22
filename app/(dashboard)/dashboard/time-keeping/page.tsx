@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { JSX, useState } from 'react';
 import { Calendar, Clock, Users, Plus, Edit3, Trash2, X, Save } from 'lucide-react';
 
 // Type definitions
@@ -123,8 +123,8 @@ const DarkScheduler: React.FC = () => {
 
     if (editingEvent) {
       // Update existing event
-      setScheduleData(prev => prev.map(event => 
-        event.id === editingEvent.id 
+      setScheduleData(prev => prev.map(event =>
+        event.id === editingEvent.id
           ? { ...event, ...eventForm, day: selectedSlot.day, time: selectedSlot.hour }
           : event
       ));
@@ -138,7 +138,7 @@ const DarkScheduler: React.FC = () => {
       };
       setScheduleData(prev => [...prev, newEvent]);
     }
-    
+
     setShowEventModal(false);
     setSelectedSlot(null);
     setEditingEvent(null);
@@ -187,7 +187,7 @@ const DarkScheduler: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       {/* Header */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-wrap justify-between items-center mb-8">
         <div className="flex items-center gap-4">
           <h1 className="text-xl font-medium text-gray-200">{currentSession}</h1>
           <div className="flex items-center gap-2 text-sm text-gray-400">
@@ -195,7 +195,7 @@ const DarkScheduler: React.FC = () => {
             <span>Week View</span>
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 flex-wrap">
           <button 
             onClick={() => setIsClockIn(!isClockIn)}
             className={`px-6 py-2 rounded-lg font-medium transition-colors ${
@@ -220,8 +220,8 @@ const DarkScheduler: React.FC = () => {
       </div>
 
       {/* Schedule Grid */}
-      <div className="bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
-        {/* Days Header */}
+      <div className="bg-gray-800 rounded-xl overflow-hidden shadow-2xl w-[1200px] overflow-x-auto">
+     
         <div className="grid grid-cols-8 bg-gray-700">
           <div className="p-4 border-r border-gray-600"></div>
           {days.map((day: string, index: number) => (
@@ -231,15 +231,15 @@ const DarkScheduler: React.FC = () => {
           ))}
         </div>
 
-        {/* Time Slots */}
+    
         {hours.map((hour: string, hourIndex: number) => (
           <div key={hour} className="grid grid-cols-8 border-t border-gray-600">
-            {/* Time Column */}
+          
             <div className="p-4 text-right text-gray-400 font-medium border-r border-gray-600 bg-gray-750">
               {hour}
             </div>
             
-            {/* Day Columns */}
+         
             {days.map((day: string, dayIndex: number) => {
               const event: Event | undefined = getEventForTimeSlot(day, hour);
               return (
@@ -261,7 +261,7 @@ const DarkScheduler: React.FC = () => {
                         </div>
                         <span className="text-xs text-gray-500">{event.duration}</span>
                       </div>
-                      <div className="absolute inset-0 bg-blue-500 bg-opacity-0 group-hover:bg-opacity-10 rounded-lg transition-all"></div>
+                      <div className="absolute inset-0   bg-opacity-0 group-hover:bg-opacity-10 rounded-lg transition-all"></div>
                     </div>
                   ) : (
                     <div className="h-full rounded-lg transition-colors flex items-center justify-center text-gray-600 hover:text-gray-400">
@@ -390,7 +390,7 @@ const DarkScheduler: React.FC = () => {
                 </button>
                 <button
                   onClick={handleSaveEvent}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2   text-white rounded-lg hover:bg-blue-700 transition-colors"
                   type="button"
                 >
                   <Save size={16} />
