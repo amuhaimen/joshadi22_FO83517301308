@@ -1,6 +1,6 @@
 'use client'
 import React, { JSX, useState } from 'react';
-import { Calendar, Clock, Users, Plus, Edit3, Trash2, X, Save } from 'lucide-react';
+import { Calendar, Clock, Users, Plus,Trash2, X, Save } from 'lucide-react';
 
 // Type definitions
 interface Event {

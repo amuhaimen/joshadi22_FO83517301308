@@ -89,41 +89,39 @@ export function ChartPieDonut() {
             <option value="Yearly">Yearly</option>
           </select>
         </CardHeader>
-        <CardContent >
-           
-            <div className="relative w-full h-[240px] mx-auto ">
-              <ChartContainer config={chartConfig} className="w-full h-full rounded-full">
-              
-                <PieChart>
-                  <ChartTooltip
-                    cursor={false}
-                    content={<ChartTooltipContent hideLabel />}
-                  />
-                  <Pie
-                    data={monthlyData}
-                    dataKey="value"
-                    nameKey="category"
-                    innerRadius={65}
-                    outerRadius={95}
-                    strokeWidth={0}
-                    paddingAngle={4}
-                    cornerRadius={6}
-                    fill="#8884d8"
-                   
-                  />
-                </PieChart>
-              </ChartContainer>
-              <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <div className="flex items-center text-[#F16363] text-base gap-1 font-semibold">
-                  <span>3.1%</span>
-                </div>
-                <div className="text-xs text-[#D2D2D5] font-bold">-$1,200</div>
-                <div className="text-xs text-[#D2D2D5] font-bold">
-                  this month
-                </div>
+        <CardContent>
+          <div className="relative w-full h-[240px] mx-auto ">
+            <ChartContainer
+              config={chartConfig}
+              className="w-full h-full rounded-full"
+            >
+              <PieChart>
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <Pie
+                  data={monthlyData}
+                  dataKey="value"
+                  nameKey="category"
+                  innerRadius={65}
+                  outerRadius={95}
+                  strokeWidth={0}
+                  paddingAngle={4}
+                  cornerRadius={6}
+                  fill="#8884d8"
+                />
+              </PieChart>
+            </ChartContainer>
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              <div className="flex items-center text-[#F16363] text-base gap-1 font-semibold">
+                <span>3.1%</span>
               </div>
+              <div className="text-xs text-[#D2D2D5] font-bold">-$1,200</div>
+              <div className="text-xs text-[#D2D2D5] font-bold">this month</div>
             </div>
-           
+          </div>
+
           <div className="flex flex-col xl:flex-row justify-center gap-2">
             {monthlyData.map((item, index) => (
               <div
@@ -155,4 +153,3 @@ export function ChartPieDonut() {
     </div>
   );
 }
- 

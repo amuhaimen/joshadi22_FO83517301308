@@ -5,29 +5,7 @@ import RightArrowPaginationIcon from '@/public/icons/RightArrowPaginationIcon';
 import React, { useState,ReactNode } from 'react'
 
 
-const cardData = [
-  {
-    title: "Available Balance",
-    parcentage: "$3165,000",
-    trendPercentage: "10%",
-    trendChange: "this month",
-    isPsitiveTrend: true,
-  },
-  {
-    title: "Previous payout",
-    parcentage: "$1,375,000",
-    trendPercentage: "10%",
-    trendChange: "this month",
-    isPsitiveTrend: true,
-  },
-  {
-    title: "Next payout",
-    parcentage: "$1125,000",
-    trendPercentage: "10%",
-    trendChange: "this month",
-    isPsitiveTrend: false,
-  },
-];
+ 
 
 type TimeSheet = {
   id: number;

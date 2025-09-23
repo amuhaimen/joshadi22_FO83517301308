@@ -1,5 +1,4 @@
 import InvestmentIdeaCardIcon from "@/public/investment-ideas/icons/InvestmentIdeaCardIcon";
-import InvestmentIcon from "@/public/sidebar/icons/InvestmentIcon";
 import React from "react";
 
 export default function InvestmentCard() {

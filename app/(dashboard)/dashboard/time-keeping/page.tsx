@@ -1,9 +1,12 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React  from "react";
 import TimeKeepingTable from "./_components/TimeKeepingTable";
 import FinancialSum from "./_components/FinancialSum";
-import DarkScheduler from "./_components/DarkScheduler";
+ 
+ 
+import { TBarChart } from "./_components/TBarChart";
+import { TPieChart } from "./_components/TPieChart";
 
 export default function page() {
   return (
@@ -20,8 +23,12 @@ export default function page() {
           {/* charts */}
 
           <div className=" flex text-white mt-6 gap-6">
-            <div className=" flex-1 bg-[#151515]">1</div>
-            <div className=" flex-1 bg-[#151515]">2</div>
+            <div className=" flex-1 bg-[#151515] rounded-3xl">
+              <TBarChart/>
+            </div>
+            <div className=" flex-1 bg-[#151515]  rounded-3xl">
+            <TPieChart/>      
+            </div>
           </div>
         </div>
         <div className="">
