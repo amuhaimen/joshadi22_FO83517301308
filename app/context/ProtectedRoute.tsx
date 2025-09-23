@@ -32,7 +32,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
     }
 
     setIsLoading(false);
-  }, [role, router, allowedRoles]);
+  }, []);
 
   const redirectToRoleDashboard = (userRole: string) => {
     switch(userRole) {
