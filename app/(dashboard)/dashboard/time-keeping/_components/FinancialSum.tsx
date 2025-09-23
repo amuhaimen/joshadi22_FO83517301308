@@ -49,14 +49,48 @@ export default function FinancialSum() {
             </div>
             <div className="job-list bg-[#1F1F1F] rounded-b-[12px] border-b border-x border-[#393939] py-2 px-6">
               {data.jobs.map((job, jobIndex) => (
-                <div key={jobIndex} className="job">
-                  <p className="job-title">{job.title}</p>
-                  <p className="job-hours">{job.hours}</p>
+                <div key={jobIndex} className="job flex justify-between space-y-1">
+                  <p className="job-title text-sm font-semibold ">{job.title}</p>
+                  <p className=" text-sm text-[#C2C2C2] font-semibold">{job.hours}</p>
                 </div>
               ))}
             </div>
           </div>
         ))}
+      </div>
+      <div className=" mt-12">
+        <h3 className=" text-white text-lg font-semibold">This Week</h3>
+        <div className=" space-y-4 mt-5">
+            <div className=" flex justify-between">
+                <p className=" text-base text-white">Total Hours</p>
+                <p className=" text-lg text-white font-medium">42.5h</p>
+            </div>
+            <div className=" flex justify-between">
+                <p className=" text-base text-white">Billable Hours</p>
+                <p className=" text-lg text-white font-medium">35.2h</p>
+            </div>
+            <div className=" flex justify-between">
+                <p className=" text-base text-white">Gross Earnings</p>
+                <p className=" text-lg text-white font-medium">42.5h</p>
+            </div>
+        </div>
+      </div>
+      <div className=" mt-12">
+        <h3 className=" text-white text-lg font-semibold">This Month</h3>
+        <div className=" space-y-4 mt-5">
+            <div className=" flex justify-between">
+                <p className=" text-base text-white">Gross Earnings</p>
+                <p className=" text-lg text-white font-medium">$9,136.00</p>
+            </div>
+            <div className=" flex justify-between">
+                <p className=" text-base text-white">Pre-tax Deductions</p>
+                <p className=" text-lg text-[#EF6471] font-medium">-$1,370.40</p>
+            </div>
+            <div className=" flex justify-between">
+                <p className=" text-base text-white">Net Payout</p>
+                <p className=" text-lg text-[#21AF68] font-medium">$7,765.60</p>
+            </div>
+        </div>
       </div>
     </div>
   );

@@ -352,3 +352,10 @@
 .ui_profile_icons_bg{
   background-color: rgba(121, 220, 164, 0.05);
 }
+
+.ai_bg_page{
+  background-image: url('../public/ai-page/AI\ Search\ Page.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

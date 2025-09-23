@@ -249,7 +249,7 @@ const [currentPage, setCurrentPage] = useState(1);
                 </span>
               </div>
 
-              <div className="flex items-center">
+              <div className="flex items-center gap-1">
                 <button
                   className="p-2 text-white rounded-md shrink-0 cursor-pointer common_btn_bg"
                   onClick={() => handlePageChange(currentPage - 1)}
