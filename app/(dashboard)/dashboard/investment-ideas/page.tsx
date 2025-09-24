@@ -1,5 +1,7 @@
+'use client'
 import React from 'react'
 import InvestmentCard from './_components/InvestmentCard'
+import InvestmentIdeasInputs from './_components/InvestmentIdeasInputs'
 
 export default function page() {
   return (
@@ -13,9 +15,11 @@ export default function page() {
 
          </div>
       </div>
+      {/* inputs */}
+      <InvestmentIdeasInputs/>
       {/* investment cards */}
-      <div className=' bg-[#161616] p-4 rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'>
 
+      <div className=' bg-[#161616] p-4 rounded-3xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6'>
       <InvestmentCard/>
       <InvestmentCard/>
       <InvestmentCard/>
