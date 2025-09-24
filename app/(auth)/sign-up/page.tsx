@@ -1,10 +1,15 @@
 import React from "react";
+import logo from '@/public/logo-fav.svg'
+import Image from "next/image";
 
 export default function page() {
   return (
     <div className=" main_bg h-screen flex justify-center items-center">
       <div className=" role_question_bg py-12 px-[42px] w-[700px]  rounded-[20px]">
-        <h2 className=" text-white text-[32px] font-semibold mb-12">Sign Up</h2>
+        <div className=" flex items-center justify-center gap-4">
+        <Image src={logo} alt="logo" width={50} height={50}/>
+        <h2 className=" text-white text-[32px] font-semibold ">Sign Up</h2>
+        </div>
         <div className=" space-y-6">
           {/* full name */}
           <div className=" flex flex-col w-full">
