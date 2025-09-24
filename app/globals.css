@@ -2,6 +2,11 @@
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
 
+
+ 
+
+
+
 /* ============================= raw css ========================== */
 
 .sidebar_bg {
@@ -354,8 +359,20 @@
 }
 
 .ai_bg_page{
-  background-image: url('../public/ai-page/AI\ Search\ Page.png');
-  background-position: center;
+  background-image: url('../public/ai-page/ai_bg.png');
+ 
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ai_input_bg{
+  background-image: linear-gradient(90deg, rgba(24, 56, 39, 0.60) 0.01%, rgba(25, 57, 40, 0.06) 127.76%);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.ai_btn_bg{
+  background-image: linear-gradient(180deg, #3FD98B 0%, #21AF68 100%);
   background-size: cover;
   background-repeat: no-repeat;
 }

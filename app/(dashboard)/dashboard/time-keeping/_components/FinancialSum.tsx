@@ -1,3 +1,4 @@
+import { Divide } from "lucide-react";
 import React from "react";
 
 type CardData = {
@@ -36,7 +37,7 @@ const cardData: CardData[] = [
   },
 ];
 
-export default function FinancialSum() {
+export default function åFinancialSum() {
   return (
     <div className=" bg-[#151515] px-4 pt-6 pb-6 rounded-3xl text-white ">
       <h3 className=" text-white text-lg font-semibold">Financial Summary</h3>
@@ -44,7 +45,10 @@ export default function FinancialSum() {
         {cardData.map((data, index) => (
           <div key={index} className="card">
             <div className=" bg-[#191919] flex justify-between rounded-t-[12px]  border-x border-t border-[#393939] px-4 py-2">
+              <div className=" flex items-center gap-2">
+                  <div className={`w-2.5 h-2.5 rounded-full  ${data.role==="UX Designer"?'bg-[#8676FF]':data.role==='Developer'?'bg-[#01F1E3]':'bg-[#FF708B]'}`}></div>
               <h3 className=" text-white text-base font-semibold">{data.role}</h3>
+              </div>
               <p className=" text-lg text-[#21AF68] font-semibold">{data.rate}</p>
             </div>
             <div className="job-list bg-[#1F1F1F] rounded-b-[12px] border-b border-x border-[#393939] py-2 px-6">

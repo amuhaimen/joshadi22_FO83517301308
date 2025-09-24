@@ -1,0 +1,11 @@
+{
+  "recurrenceData": [
+    {
+      "Id": 1,
+      "Subject": "Acme Redesign",
+      "StartTime": "2021-02-02T08:00:00.000Z",
+      "EndTime": "2021-02-02T10:00:00.000Z",
+      "RecurrenceRule": "FREQ=DAILY;INTERVAL=1;COUNT=5"
+    }
+  ]
+}
