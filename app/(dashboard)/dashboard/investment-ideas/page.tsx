@@ -7,7 +7,8 @@ export default function page() {
   return (
     <div>
       {/* header */}
-      <div>
+      <div className=' flex justify-between items-center'>
+      <div >
         <h2 className=' text-white text-[32px] font-medium'>Investment Ideas Overview</h2>
          <div className=' text-sm text-[#A5A5AB] font-medium flex items-center gap-2'>
           <p >Job search</p>
@@ -15,6 +16,10 @@ export default function page() {
 
          </div>
       </div>
+       <button className='rounded-lg ai_btn_bg text-white text-base font-semibold py-2 px-5'>New Projects</button>
+
+      </div>
+     
       {/* inputs */}
       <InvestmentIdeasInputs/>
       {/* investment cards */}
