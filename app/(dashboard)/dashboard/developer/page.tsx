@@ -168,7 +168,7 @@ const page = () => {
                 <div className='flex flex-col gap-3'>
                   <div className='flex flex-col gap-1'>
                     <span className="  text-zinc-500 text-sm font-semibold font-Urbanist leading-tight tracking-tight">Result Summary</span>
-                    <div className="w-full h-10 px-4 py-2 bg-[#1f1f1f] rounded-xl outline outline-1 outline-offset-[-1px] outline-white/5 inline-flex flex-col justify-center items-start gap-2.5">
+                    <div className="w-full h-10 px-4 py-2 bg-[#1f1f1f] rounded-xl   outline-1 outline-offset-[-1px] outline-white/5 inline-flex flex-col justify-center items-start gap-2.5">
                       <div className="text-right justify-start text-neutral-300 text-xs font-normal font-Urbanist leading-snug">3/5 struggled to find the settings icon</div>
                     </div>
                   </div>

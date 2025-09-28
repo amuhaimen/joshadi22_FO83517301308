@@ -16,25 +16,25 @@ export default function WelcomePage() {
   };
 
   return (
-    <div className="main_bg      sm:py-[91px]  flex justify-center items-center  ">
+    <div className="main_bg flex justify-center items-center  h-screen">
       <div className="w-full max-w-screen-xl px-4 sm:px-6">
         {/* header */}
-        <div className="text-center pb-8 sm:pb-12 lg:pb-[60px]">
-          <h1 className="text-3xl sm:text-5xl lg:text-[72px] text-white font-semibold">
+        <div className="text-center pb-7 sm:pb-9 lg:pb-11">
+          <h1 className="text-3xl sm:text-4xl lg:text-[72px] text-white font-semibold">
             Welcome to Devclock
           </h1>
-          <p className="text-lg sm:text-2xl lg:text-[32px] font-medium text-[#21AF68]">
+          <p className="text-lg sm:text-2xl lg:text-2xl font-medium text-[#21AF68]">
             Core Features
           </p>
         </div>
         {/* cards */}
-        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+        <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-10">
           {/* Left Cards */}
-          <div className="space-y-6 lg:space-y-10 flex-1">
-            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-4 lg:p-5 rounded-[10px]">
+          <div className="space-y-3 lg:space-y-10 flex-1">
+            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <IdeaIcon />
               <div>
-                <h3 className="text-white text-xl sm:text-2xl lg:text-[32px] font-semibold">
+                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-semibold">
                   Ideation & Strategy
                 </h3>
                 <p className="text-base sm:text-xl lg:text-2xl text-[#21AF68] font-medium">
@@ -45,10 +45,10 @@ export default function WelcomePage() {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-4 lg:p-5 rounded-[10px]">
+            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <DevIcon />
               <div>
-                <h3 className="text-white text-xl sm:text-2xl lg:text-[32px] font-semibold whitespace-nowrap">
+                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-semibold whitespace-nowrap">
                   Development & Engineering
                 </h3>
                 <p className="text-base sm:text-xl lg:text-2xl text-[#21AF68] font-medium">
@@ -59,10 +59,10 @@ export default function WelcomePage() {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-4 lg:p-5 rounded-[10px]">
+            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <SettingsIcon />
               <div>
-                <h3 className="text-white text-xl sm:text-2xl lg:text-[32px] font-semibold">
+                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-semibold">
                   Operations & Scaling
                 </h3>
                 <p className="text-base sm:text-xl lg:text-2xl text-[#21AF68] font-medium">
@@ -76,11 +76,11 @@ export default function WelcomePage() {
           </div>
 
           {/* Right Cards */}
-          <div className="space-y-6 lg:space-y-10 flex-1">
-            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-4 lg:p-5 rounded-[10px]">
+          <div className="space-y-3 lg:space-y-10 flex-1">
+            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <PenScaleIcon />
               <div>
-                <h3 className="text-white text-xl sm:text-2xl lg:text-[32px] font-semibold">
+                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-semibold">
                   Design & Prototyping
                 </h3>
                 <p className="text-base sm:text-xl lg:text-2xl text-[#21AF68] font-medium">
@@ -91,10 +91,10 @@ export default function WelcomePage() {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-4 lg:p-5 rounded-[10px]">
+            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <SearchIcon />
               <div>
-                <h3 className="text-white text-xl sm:text-2xl lg:text-[32px] font-semibold">
+                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-semibold">
                   Quality & Testing
                 </h3>
                 <p className="text-base sm:text-xl lg:text-2xl text-[#21AF68] font-medium">
@@ -105,10 +105,10 @@ export default function WelcomePage() {
                 </p>
               </div>
             </div>
-            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-4 lg:p-5 rounded-[10px]">
+            <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <GrowthIcon />
               <div>
-                <h3 className="text-white text-xl sm:text-2xl lg:text-[32px] font-semibold">
+                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-semibold">
                   Growth & Support
                 </h3>
                 <p className="text-base sm:text-xl lg:text-2xl text-[#21AF68] font-medium">
