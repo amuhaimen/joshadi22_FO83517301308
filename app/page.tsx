@@ -1,12 +1,15 @@
-'use client';
+"use client";
 import React, { useState } from "react";
 import { useAuth } from "./context/AuthContext";
 import { useRouter } from "next/navigation";
+import logo from "@/public/logo-fav.svg";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -16,85 +19,160 @@ export default function LoginPage() {
     login(email, password);
 
     // Redirect to role questions based on the role
-    if (email === 'admin@example.com' && password === 'manager123') {
-        router.push('/welcome');
-    } else if (email === 'developer@example.com' && password === 'dev123') {
-      router.push('/welcome');
-    } else if (email === 'designer@example.com' && password === 'designer123') {
-      router.push('/welcome');
-    } else if (email === 'investor@example.com' && password === 'investor123') {
-      router.push('/welcome');
+    if (email === "admin@example.com" && password === "manager123") {
+      router.push("/welcome");
+    } else if (email === "developer@example.com" && password === "dev123") {
+      router.push("/welcome");
+    } else if (email === "designer@example.com" && password === "designer123") {
+      router.push("/welcome");
+    } else if (email === "investor@example.com" && password === "investor123") {
+      router.push("/welcome");
     }
   };
 
   return (
-    
-      <div className="flex items-center justify-center h-screen bg-gray-100 main_bg bg-contain ">
-        <div className="flex flex-col md:flex-row w-full max-w-screen-lg mx-5">
-          
-          {/* Left Card with Role Credentials */}
-          <div className="flex-1 bg-[#181818] text-white p-8 rounded-lg mr-4">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Login Credentials</h2>
-            <div className="space-y-4">
-              <div className="bg-[#1f1f1f] p-4 rounded-lg">
-                <h3 className="text-xl font-semibold">Manager</h3>
-                <p>Email: <strong>admin@example.com</strong></p>
-                <p>Password: <strong>manager123</strong></p>
-              </div>
-              <div className="bg-[#1f1f1f] p-4 rounded-lg">
-                <h3 className="text-xl font-semibold">Developer</h3>
-                <p>Email: <strong>developer@example.com</strong></p>
-                <p>Password: <strong>dev123</strong></p>
-              </div>
-              <div className="bg-[#1f1f1f] p-4 rounded-lg">
-                <h3 className="text-xl font-semibold">Designer</h3>
-                <p>Email: <strong>designer@example.com</strong></p>
-                <p>Password: <strong>designer123</strong></p>
-              </div>
-              <div className="bg-[#1f1f1f] p-4 rounded-lg">
-                <h3 className="text-xl font-semibold">Investor</h3>
-                <p>Email: <strong>investor@example.com</strong></p>
-                <p>Password: <strong>investor123</strong></p>
-              </div>
-            </div>
+    <div>
+      <div className=" main_bg h-screen flex justify-center items-center">
+        <div className=" role_question_bg py-12 px-[42px] w-[700px]  rounded-[20px]">
+          <div className=" flex items-center justify-center gap-4">
+            <Image src={logo} alt="logo" width={50} height={50} />
+            <h2 className=" text-white text-[32px] font-semibold ">Login</h2>
           </div>
-
-          {/* Right Side Login Form */}
-          <div className="flex-1 bg-[#181818] p-8 rounded-lg mt-4 md:mt-0">
-            <form 
-              className="flex flex-col gap-4 w-full"
-              onSubmit={handleSubmit}
-            >
-              <label htmlFor="login-form" className="text-center font-semibold text-xl text-white">
-                Login
+          <form className=" space-y-6" onSubmit={handleSubmit}>
+            {/* email */}
+            <div className=" flex flex-col w-full">
+              <label
+                htmlFor="email"
+                className=" mb-3 text-[#E9E9EA] text-lg font-medium"
+              >
+                Email
               </label>
-              <input 
-                type="email" 
-                name="email" 
-                id="email" 
-                placeholder="Enter Your Email here" 
-                className="py-3 px-4 bg-white border border-gray-300 rounded-xl"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+              <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium text-white"
               />
-              <input 
-                type="password" 
-                name="password" 
-                id="password" 
-                placeholder="Enter Your Password here" 
-                className="py-3 px-4 bg-white border border-gray-300 rounded-xl"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+            </div>
+            {/* password */}
+            <div className=" flex flex-col w-full">
+              <label
+                htmlFor="password"
+                className=" mb-3 text-[#E9E9EA] text-lg font-medium"
+              >
+                Password
+              </label>
+              <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
+                className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium text-white"
               />
-              <input 
-                type="submit" 
-                value="Log in" 
-                className="py-3 px-4 bg-[#21AF68] text-white rounded-xl cursor-pointer border border-transparent hover:border-gray-500 hover:bg-white hover:text-black font-medium transition-all duration-300 ease-in-out"
+            </div>
+
+            {/* terms and privacy */}
+            <div className="flex items-center gap-2 ">
+              <input
+                type="checkbox"
+                name=""
+                id="term"
+                className=" cursor-pointer"
               />
-            </form>
-          </div>
+              <label htmlFor="term" className="  text-[#E9E9EA] text-base  ">
+                I agree to the Terms and Privacy Policy
+              </label>
+            </div>
+
+            <input
+              type="submit"
+              value="Log in"
+              className=" auth_btn_bg w-full py-4 px-5 text-white text-lg font-semibold rounded-xl cursor-pointer"
+            />
+          </form>
+          <p className=" text-base text-[#E9E9EA] mt-8 text-center">
+            Already have a account?{" "}
+            <Link
+              href="/sign-up"
+              className=" font-semibold text-[#21AF68] ml-2 cursor-pointer"
+            >
+              sign up
+            </Link>{" "}
+          </p>
         </div>
       </div>
-  
+    </div>
+
+    // <div className="flex items-center justify-center h-screen bg-gray-100 main_bg bg-contain ">
+    //   <div className="flex flex-col md:flex-row w-full max-w-screen-lg mx-5">
+
+    //     Left Card with Role Credentials
+    //     <div className="flex-1 bg-[#181818] text-white p-8 rounded-lg mr-4">
+    //       <h2 className="text-2xl font-semibold mb-6 text-center">Login Credentials</h2>
+    //       <div className="space-y-4">
+    //         <div className="bg-[#1f1f1f] p-4 rounded-lg">
+    //           <h3 className="text-xl font-semibold">Manager</h3>
+    //           <p>Email: <strong>admin@example.com</strong></p>
+    //           <p>Password: <strong>manager123</strong></p>
+    //         </div>
+    //         <div className="bg-[#1f1f1f] p-4 rounded-lg">
+    //           <h3 className="text-xl font-semibold">Developer</h3>
+    //           <p>Email: <strong>developer@example.com</strong></p>
+    //           <p>Password: <strong>dev123</strong></p>
+    //         </div>
+    //         <div className="bg-[#1f1f1f] p-4 rounded-lg">
+    //           <h3 className="text-xl font-semibold">Designer</h3>
+    //           <p>Email: <strong>designer@example.com</strong></p>
+    //           <p>Password: <strong>designer123</strong></p>
+    //         </div>
+    //         <div className="bg-[#1f1f1f] p-4 rounded-lg">
+    //           <h3 className="text-xl font-semibold">Investor</h3>
+    //           <p>Email: <strong>investor@example.com</strong></p>
+    //           <p>Password: <strong>investor123</strong></p>
+    //         </div>
+    //       </div>
+    //     </div>
+
+    //     Right Side Login Form
+    //     <div className="flex-1 bg-[#181818] p-8 rounded-lg mt-4 md:mt-0">
+    //       <form
+    //         className="flex flex-col gap-4 w-full"
+    //         onSubmit={handleSubmit}
+    //       >
+    //         <label htmlFor="login-form" className="text-center font-semibold text-xl text-white">
+    //           Login
+    //         </label>
+    //         <input
+    //           type="email"
+    //           name="email"
+    //           id="email"
+    //           value={email}
+    //           onChange={(e) => setEmail(e.target.value)}
+    //           placeholder="Enter Your Email here"
+    //           className="py-3 px-4 bg-white border border-gray-300 rounded-xl"
+    //         />
+    //         <input
+    //           type="password"
+    //           name="password"
+    //           id="password"
+    //           value={password}
+    //           onChange={(e) => setPassword(e.target.value)}
+    //           placeholder="Enter Your Password here"
+    //           className="py-3 px-4 bg-white border border-gray-300 rounded-xl"
+    //         />
+    //         <input
+    //           type="submit"
+    //           value="Log in"
+    //           className="py-3 px-4 bg-[#21AF68] text-white rounded-xl cursor-pointer border border-transparent hover:border-gray-500 hover:bg-white hover:text-black font-medium transition-all duration-300 ease-in-out"
+    //         />
+    //       </form>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }

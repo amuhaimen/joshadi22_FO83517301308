@@ -271,7 +271,7 @@ const RoleQuestions: React.FC = () => {
           <button
             onClick={handleBack}
             className={`px-8 py-3 rounded-lg font-semibold text-white transition-colors  
- bg-[#05A265]  cursor-pointer hover:bg-[#048A56]
+                bg-[#05A265]  cursor-pointer hover:bg-[#048A56]
             `}
           >
             Prev

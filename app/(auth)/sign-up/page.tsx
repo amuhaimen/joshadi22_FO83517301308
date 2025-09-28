@@ -15,7 +15,7 @@ export default function page() {
           <div className=" flex flex-col w-full">
             <label
               htmlFor="fullName"
-              className=" mb-3 text-[#E9E9EA] text-lg font-medium"
+              className=" mb-3 text-[#E9E9EA] text-lg font-medium "
             >
               Full Name
             </label>
@@ -24,7 +24,7 @@ export default function page() {
               name=""
               id="fullName"
               placeholder="Enter Your full name"
-              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium"
+              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium text-white"
             />
           </div>
           {/* email */}
@@ -40,14 +40,30 @@ export default function page() {
               name=""
               id="email"
               placeholder="Enter your email"
-              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium"
+              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium text-white"
+            />
+          </div>
+            {/* phone */}
+          <div className=" flex flex-col w-full">
+            <label
+              htmlFor="phone"
+              className=" mb-3 text-[#E9E9EA] text-lg font-medium"
+            >
+              Phone Number
+            </label>
+            <input
+              type="text"
+              name=""
+              id="phone"
+              placeholder="Enter your phone number"
+              className="w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium  text-white"
             />
           </div>
           {/* password */}
           <div className=" flex flex-col w-full">
             <label
               htmlFor="password"
-              className=" mb-3 text-[#E9E9EA] text-lg font-medium"
+              className=" mb-3 text-[#E9E9EA] text-lg font-medium "
             >
               Password
             </label>
@@ -56,7 +72,7 @@ export default function page() {
               name=""
               id=""
               placeholder="Enter your password"
-              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium"
+              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium text-white"
             />
           </div>
           {/* confirm password */}
@@ -72,25 +88,10 @@ export default function page() {
               name=""
               id="cPassword"
               placeholder="Enter your confirm password"
-              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium"
+              className=" w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium text-white"
             />
           </div>
-          {/* phone */}
-          <div className=" flex flex-col w-full">
-            <label
-              htmlFor="phone"
-              className=" mb-3 text-[#E9E9EA] text-lg font-medium"
-            >
-              Phone Number
-            </label>
-            <input
-              type="text"
-              name=""
-              id="phone"
-              placeholder="Enter your phone number"
-              className="w-full py-3 px-6 border border-[#393939] rounded-xl placeholder:text-[#D2D2D5] placeholder:font-medium "
-            />
-          </div>
+        
           {/* terms and privacy */}
           <div className="flex items-center gap-2 ">
             <input type="checkbox" name="" id="term" className=" cursor-pointer" />

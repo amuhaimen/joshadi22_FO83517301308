@@ -28,9 +28,9 @@ export default function WelcomePage() {
           </p>
         </div>
         {/* cards */}
-        <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-10">
+        <div className="flex flex-col lg:flex-row items-center gap-3 lg:gap-6">
           {/* Left Cards */}
-          <div className="space-y-3 lg:space-y-10 flex-1">
+          <div className="space-y-3 lg:space-y-6 flex-1">
             <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <IdeaIcon />
               <div>
@@ -76,7 +76,7 @@ export default function WelcomePage() {
           </div>
 
           {/* Right Cards */}
-          <div className="space-y-3 lg:space-y-10 flex-1">
+          <div className="space-y-3 lg:space-y-6 flex-1">
             <div className="flex items-start gap-4 lg:gap-5 welcome_card_bg border border-[#5c5c5c] p-2 lg:p-3 rounded-[10px]">
               <PenScaleIcon />
               <div>
@@ -122,7 +122,7 @@ export default function WelcomePage() {
           </div>
         </div>
         {/* Next Button - Bottom Right */}
-        <div className=" flex justify-end mt-10">
+        <div className=" flex justify-end mt-5 lg:mt-10 ">
           <button
             onClick={handleNext}
             className="px-8 py-3 bg-[#21AF68] text-white font-semibold rounded-lg hover:bg-[#1e9c5e] transition-colors duration-300 shadow-lg cursor-pointer"
