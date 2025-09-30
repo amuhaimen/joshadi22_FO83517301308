@@ -66,6 +66,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       newRole = "designer";
     else if (email === "investor@example.com" && password === "investor123")
       newRole = "investor";
+    else if(email==='contracts@gmail.com' && password==='contracts123')
+      newRole ="contracts"
     else {
       alert("Invalid credentials");
       setLoading(false);

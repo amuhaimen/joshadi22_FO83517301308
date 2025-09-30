@@ -27,6 +27,8 @@ export default function LoginPage() {
       router.push("/welcome");
     } else if (email === "investor@example.com" && password === "investor123") {
       router.push("/welcome");
+    } else if(email ==="contracts@gmail.com" && password==="contracts123"){
+      router.push("/welcome");
     }
   };
 

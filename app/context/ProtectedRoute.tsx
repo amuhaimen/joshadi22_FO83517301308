@@ -48,6 +48,9 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
       case 'investor':
         router.push('/dashboard/investor');
         break;
+        case 'contracts':
+          router.push('/dashboard/contracts');
+          break
       default:
         router.push('/');
     }

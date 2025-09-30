@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
 
-type Role = "investor" | "manager" | "designer" | "developer";
+type Role = "investor" | "manager" | "designer" | "developer"| "contracts";
 
 interface Question {
   id: number;
@@ -157,6 +157,39 @@ const roleQuestions: Record<Role, Question[]> = {
       options: ["Pair programming", "Solo development", "Code reviews"],
     },
   ],
+  contracts: [
+    {
+      id: 1,
+      question: "What is your primary programming language?",
+      options: ["Python", "JavaScript", "Java", "C#"],
+    },
+    {
+      id: 2,
+      question: "Which frameworks do you work with?",
+      options: ["React", "Angular", "Vue", "Node.js", "Django", "Spring"],
+    },
+    {
+      id: 3,
+      question: "What CI/CD tools do you prefer?",
+      options: ["GitHub Actions", "CircleCI", "Other"],
+    },
+    {
+      id: 4,
+      question: "Do you primarily work on?",
+      options: ["Frontend Projects", "Backend Projects", "Full-stack Projects"],
+    },
+    {
+      id: 5,
+      question: "How do you track your time?",
+      options: ["Manual logs", "Automated tracking", "Code reviews"],
+    },
+    {
+      id: 6,
+      question: "What do you prefer?",
+      options: ["Pair programming", "Solo development", "Code reviews"],
+    },
+  ],
+
 };
 
 const RoleQuestions: React.FC = () => {
@@ -204,6 +237,8 @@ const RoleQuestions: React.FC = () => {
         router.push("/dashboard/designer");
       } else if (currentRole === "investor") {
         router.push("/dashboard/investor");
+      } else if(currentRole ==='contracts'){
+        router.push("/dashboard/contracts")
       }
     }
   };
@@ -232,6 +267,7 @@ const RoleQuestions: React.FC = () => {
       developer: "Developer",
       designer: "UX Designer",
       investor: "Investor",
+      contracts:"Contracts"
     };
     return roleNames[role] || role;
   };
