@@ -73,11 +73,12 @@ const menuItems: Record<string, MenuItem[]> = {
       icon: ContractsIcon,
       href: "/dashboard/contracts",
       children: [
-        { title: "All Contracts", href: "/dashboard/contracts/all" },
-        { title: "Create Contract", href: "/dashboard/contracts/create" },
+        { title: "Dashboard", href: "/dashboard/contracts/c-dashboard" },
+        { title: "Repoarts", href: "/dashboard/contracts/reports" },
       ],
     },
     { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
     {
       title: "Certification Store",
       icon: DashboardIcon,
@@ -111,7 +112,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { role } = useAuth();
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [manuallyClosedDropdown, setManuallyClosedDropdown] = useState<string | null>(null);
+  const [manuallyClosedDropdown, setManuallyClosedDropdown] = useState<
+    string | null
+  >(null);
 
   // keep dropdown open if current path matches contracts children
   useEffect(() => {
@@ -126,7 +129,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const filteredMenuItems = menuItems[role || "designer"] || [];
 
   const filteredBottomMenuItems = bottomMenuItems.filter((item) => {
-    if (role === "manager" || role === "investor") {
+    if (role === "manager" || role === "investor" || role==='contracts') {
       return item.title !== "Widget-store";
     }
     return true;
