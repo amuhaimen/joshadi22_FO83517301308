@@ -15,13 +15,18 @@ import {
   SoftwareDevIcon,
   WidgetStoreIcon,
   ContractsIcon,
+  BreifCaseIcon
 } from "@/public/sidebar/icons/CustomIcons";
 import QuestionIcon from "@/public/sidebar/icons/Question";
 import logo from "@/public/header/images/logo.png";
 import PhoneIcon from "@/public/sidebar/icons/PhoneIcon";
 import InvestmentIcon from "@/public/sidebar/icons/InvestmentIcon";
 
-type SubItem = { title: string; href: string };
+type SubItem = {
+  title: string;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  href: string;
+};
 type MenuItem = {
   title: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
@@ -73,8 +78,16 @@ const menuItems: Record<string, MenuItem[]> = {
       icon: ContractsIcon,
       href: "/dashboard/contracts",
       children: [
-        { title: "Dashboard", href: "/dashboard/contracts/c-dashboard" },
-        { title: "Repoarts", href: "/dashboard/contracts/reports" },
+        {
+          title: "Dashboard",
+          icon: DashboardIcon,
+          href: "/dashboard/contracts/c-dashboard",
+        },
+        { 
+          title: "Reports", 
+          icon: BreifCaseIcon,
+          href: "/dashboard/contracts/reports" 
+        },
       ],
     },
     { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
@@ -129,7 +142,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const filteredMenuItems = menuItems[role || "designer"] || [];
 
   const filteredBottomMenuItems = bottomMenuItems.filter((item) => {
-    if (role === "manager" || role === "investor" || role==='contracts') {
+    if (role === "manager" || role === "investor" || role === "contracts") {
       return item.title !== "Widget-store";
     }
     return true;
@@ -199,11 +212,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           }`}
                         />
                       )}
-                      <span
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          toggleDropdown(item.title);
+                        }}
                         className={`${isContractsActive ? "font-medium" : ""}`}
                       >
                         {item.title}
-                      </span>
+                      </button>
                     </Link>
                     <button
                       onClick={(e) => {
@@ -224,18 +242,26 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   >
                     {item.children.map((child) => {
                       const isChildActive = pathname === child.href;
+                      const ChildIcon = child.icon;
                       return (
                         <Link
                           key={child.href}
                           href={child.href}
                           onClick={onClose}
-                          className={`block p-2 rounded-md text-sm ${
+                          className={`flex items-center gap-3 p-2 rounded-md text-sm ${
                             isChildActive
-                              ? "bg-green-700 text-white"
+                              ? "bg-[#30c47a] text-white"
                               : "text-gray-400 hover:text-white"
                           }`}
                         >
-                          {child.title}
+                          {ChildIcon && (
+                            <ChildIcon
+                              className={`w-4 h-4 ${
+                                isChildActive ? "text-white" : "text-gray-500"
+                              }`}
+                            />
+                          )}
+                          <span>{child.title}</span>
                         </Link>
                       );
                     })}
@@ -298,3 +324,5 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     </aside>
   );
 }
+
+
