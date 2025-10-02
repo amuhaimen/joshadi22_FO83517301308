@@ -174,24 +174,19 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 pathname.startsWith("/dashboard/contracts");
               return (
                 <div key={index}>
-                  <Link
-                    href={item.href || "#"}
-                    onClick={(e) => {
-                      if (item.children && item.children.length > 0) {
-                        e.preventDefault();
-                        toggleDropdown(item.title);
-                      } else {
-                        onClose();
-                      }
-                    }}
-                    className={`flex w-full items-center justify-between p-3 rounded-lg transition-all duration-200 text-base 
+                  <div
+                    className={`flex w-full items-center justify-between p-3 rounded-lg transition-all duration-200 text-base cursor-pointer
           ${
             isContractsActive
               ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold"
               : "text-[#E9E9EA] hover:font-semibold"
           }`}
                   >
-                    <div className="flex items-center gap-3.5">
+                    <Link
+                      href={item.href || "#"}
+                      onClick={onClose}
+                      className="flex items-center gap-3.5 flex-1"
+                    >
                       {Icon && (
                         <Icon
                           className={`w-5 h-5 ${
@@ -206,7 +201,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       >
                         {item.title}
                       </span>
-                    </div>
+                    </Link>
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -217,7 +212,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     >
                       {isOpen ? <IoChevronUp /> : <IoChevronDown />}
                     </button>
-                  </Link>
+                  </div>
 
                   <div
                     className={`ml-8 mt-2 space-y-2 overflow-hidden transition-[max-height] duration-200 ${
