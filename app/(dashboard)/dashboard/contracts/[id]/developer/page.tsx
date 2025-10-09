@@ -3,9 +3,9 @@ import emp1 from '@/public/employees/emp1.png';
 import DropDown from '@/public/icons/DropDown';
 import Image from 'next/image';
 import Link from 'next/link';
-import SectionHeader from '../../_components/reusable/SectionHeader';
-import TaskOverviewCard from '../../_components/reusable/TaskOverviewCard';
-import TaskTable from '../../_components/reusable/TaskTable';
+import SectionHeader from '../../../../_components/reusable/SectionHeader';
+import TaskOverviewCard from '../../../../_components/reusable/TaskOverviewCard';
+import TaskTable from '../../../../_components/reusable/TaskTable';
 
 const taskOverview = [
   {

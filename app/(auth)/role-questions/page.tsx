@@ -229,17 +229,18 @@ const RoleQuestions: React.FC = () => {
       localStorage.setItem("roleAnswers", JSON.stringify(answers));
 
       // Redirect based on role
-      if (currentRole === "manager") {
-        router.push("/dashboard");
-      } else if (currentRole === "developer") {
-        router.push("/dashboard/developer");
-      } else if (currentRole === "designer") {
-        router.push("/dashboard/designer");
-      } else if (currentRole === "investor") {
-        router.push("/dashboard/investor");
-      } else if(currentRole ==='contracts'){
-        router.push("/dashboard/contracts")
-      }
+      // if (currentRole === "manager") {
+      //   router.push("/dashboard");
+      // } else if (currentRole === "developer") {
+      //   router.push("/dashboard/contracts");
+      // } else if (currentRole === "designer") {
+      //   router.push("/dashboard/designer");
+      // } else if (currentRole === "investor") {
+      //   router.push("/dashboard/investor");
+      // } else if(currentRole ==='contracts'){
+      //   router.push("/dashboard/contracts")
+      // }
+      router.push('dashboard/contracts')
     }
   };
 

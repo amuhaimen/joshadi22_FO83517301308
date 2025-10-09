@@ -1,6 +1,6 @@
 "use client";
 
-import SectionHeader from "../../_components/reusable/SectionHeader";
+import SectionHeader from "../../../../_components/reusable/SectionHeader";
 import InvestorCharts from "./_components/InvestorCharts";
  
 

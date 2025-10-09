@@ -7,14 +7,21 @@ import { IoMdClose } from "react-icons/io";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { useAuth } from "../../context/AuthContext";
 import {
+  DashboardIcon,
+  // InvestorIcon,
   JobSearchIcon,
+  // UiIcon,
   SettingsIcon,
+  SoftwareDevIcon,
   WidgetStoreIcon,
   ContractsIcon,
 } from "@/public/sidebar/icons/CustomIcons";
 import QuestionIcon from "@/public/sidebar/icons/Question";
 import logo from "@/public/header/images/logo.png";
 import PhoneIcon from "@/public/sidebar/icons/PhoneIcon";
+
+// ✅ Import JSON using absolute path
+import contractsData from "../../(dashboard)/dashboard/contracts/data/contactsData.json";
 
 type SubItem = {
   title: string;
@@ -28,54 +35,21 @@ type MenuItem = {
   children?: SubItem[];
 };
 
-const menuItems: Record<string, MenuItem[]> = {
-  contracts: [
-    {
-      title: "Contracts",
-      icon: ContractsIcon,
-      href: "/dashboard/contracts",
-      children: [
-        {
-          title: "Acme Redesign",
-          href: "/dashboard/contracts/a",
-          children: [
-            { title: "Dashboard", href: "/dashboard/contracts/a/child1" },
-            { title: "Workspace", href: "/dashboard/contracts/a/child2" },
-          ],
-        },
-        {
-          title: "Delta App",
-          href: "/dashboard/contracts/b",
-          children: [
-            { title: "Dashboard", href: "/dashboard/contracts/b/child1" },
-            { title: "Workspace", href: "/dashboard/contracts/b/child2" },
-          ],
-        },
-        {
-          title: "Freelance UX Audit",
-          href: "/dashboard/contracts/c",
-          children: [
-            { title: "Dashboard", href: "/dashboard/contracts/c/child1" },
-            { title: "Workspace", href: "/dashboard/contracts/c/child2" },
-          ],
-        },
-        {
-          title: "Marketing Website",
-          href: "/dashboard/contracts/d",
-          children: [
-            { title: "Dashboard", href: "/dashboard/contracts/d/child1" },
-            { title: "Workspace", href: "/dashboard/contracts/d/child2" },
-          ],
-        },
-      ],
-    },
-    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
-    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
-  ],
-};
+// ✅ Dynamically build Contract section from JSON
+// const contractsChildren = contractsData.map((contract) => ({
+  
+//   title: contract.title,
+//   href: `${contract.href}`,
+//   children: [
+//     { title: "Dashboard", href: `${contract.href}/dashboard` },
+//     { title: "Workspace", href: `${contract.href}/workspace` },
+//   ],
+// }));
+
+
 
 const bottomMenuItems = [
-  { title: "Widget-store", icon: <WidgetStoreIcon />, href: "/dashboard/widget-store" },
+  { title: "Store", icon: <WidgetStoreIcon />, href: "/dashboard/widget-store" },
   { title: "Support", icon: <QuestionIcon />, href: "#" },
   { title: "Contact Us", icon: <PhoneIcon />, href: "#" },
 ];
@@ -92,11 +66,107 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
 
   // 🟢 Redirect /dashboard → /dashboard/contracts
-  useEffect(() => {
-    if (pathname === "/dashboard" || pathname === "/dashboard/") {
-      router.replace("/dashboard/contracts");
-    }
-  }, [pathname, router]);
+  // useEffect(() => {
+  //   if (pathname === "/dashboard" || pathname === "/dashboard/") {
+  //     router.replace("/dashboard/contracts");
+  //   }
+  // }, [pathname, router]);
+
+
+// =============================================================
+
+
+ const contractsChildren = contractsData.map((contract) => {
+    const base = `${contract.href}`;
+    const userRole = role || "manager"; // fallback if role is undefined
+    return {
+      title: contract.title,
+      href: base,
+      children: [
+        { title: "Dashboard", href: `${base}/${userRole}` },
+        { title: "Workspace", href: `${base}/${userRole}-workspace` },
+      ],
+    };
+  });
+// =============================================================
+
+const menuItems: Record<string, MenuItem[]> = {
+
+
+ manager: [
+    {
+      title: "Contracts",
+      icon: ContractsIcon,
+      href: "/dashboard/contracts",
+      children: contractsChildren,
+    },
+    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard" },
+    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+    {title:"Time Keeping",icon: SoftwareDevIcon,href:"/dashboard/time-keeping"},
+    // { title: "Investor", icon: InvestorIcon, href: "/dashboard/investor" },
+    {title:"Project Manager Payout",icon:JobSearchIcon,href:"/dashboard/payout"},
+    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+  ],
+  investor: [
+    {
+      title: "Contracts",
+      icon: ContractsIcon,
+      href: "/dashboard/contracts",
+      children: contractsChildren,
+    },
+    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/investor" },
+    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+    {title:"Investment Ideas",icon:JobSearchIcon,href:"/dashboard/investment-ideas"},
+    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+  ],
+  designer: [
+    {
+      title: "Contracts",
+      icon: ContractsIcon,
+      href: "/dashboard/contracts",
+      children: contractsChildren,
+    },
+    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/designer" },
+    {title:"Certificate Store",icon:DashboardIcon,href:'/dashboard/certification-store'},
+    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+    // {
+    //   title: "UI / UX Designer",
+    //   icon: UiIcon,
+    //   href: "/dashboard/ui_ux_designer",
+    // },
+    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+  ],
+  developer: [
+    {
+      title: "Contracts",
+      icon: ContractsIcon,
+      href: "/dashboard/contracts",
+      children: contractsChildren,
+    },
+    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/developer" },
+    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+    // {
+    //   title: "Software Developer",
+    //   icon: SoftwareDevIcon,
+    //   href: "/dashboard/software_dev",
+    // },
+    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+  ],
+
+  // contracts: [
+  //   {
+  //     title: "Contracts",
+  //     icon: ContractsIcon,
+  //     href: "/dashboard/contracts",
+  //     children: contractsChildren,
+  //   },
+  //   { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+  //   { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+  // ],
+};
+
+
+
 
   // 🔥 Run only once on mount — open all dropdowns
   useEffect(() => {
@@ -127,15 +197,29 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     }));
   };
 
-  // Recursive children renderer
+  // ✅ Utility: checks if a route or its children are active
+  const isActiveParent = (parentPath: string, children?: SubItem[]): boolean => {
+    if (pathname === parentPath || pathname.startsWith(parentPath + "/")) return true;
+    if (children && children.length > 0) {
+      return children.some(
+        (child) =>
+          pathname === child.href ||
+          pathname.startsWith(child.href + "/") ||
+          isActiveParent(child.href, child.children)
+      );
+    }
+    return false;
+  };
+
+  // ✅ Recursive renderer for children
   const renderChildren = (children?: SubItem[]) => {
     if (!children) return null;
 
     return (
       <div className="ml-8 mt-2 space-y-2">
         {children.map((child) => {
-          const isActive = pathname === child.href || pathname.startsWith(child.href + "/");
           const hasChildren = child.children && child.children.length > 0;
+          const isActive = isActiveParent(child.href, child.children);
           const isOpen = openDropdowns[child.title];
 
           return (
@@ -145,15 +229,16 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   if (hasChildren) toggleDropdown(child.title);
                   router.push(child.href);
                 }}
-                className={`flex items-center justify-between gap-3 p-2 rounded-md   w-full text-left transition-colors duration-150  text-base  ${
+                className={`flex items-center justify-between gap-3 p-2 rounded-md w-full text-left transition-colors duration-150 text-base ${
                   isActive
-                    ? " text-[#21AF68] font-medium text-lg"
+                    ? "text-[#21AF68] font-semibold text-lg"
                     : "text-gray-400 hover:text-white"
                 }`}
               >
                 <span>{child.title}</span>
                 {hasChildren && (isOpen ? <IoChevronUp /> : <IoChevronDown />)}
               </button>
+
               {hasChildren && isOpen && renderChildren(child.children)}
             </div>
           );
@@ -187,7 +272,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             const Icon = item.icon;
             const hasChildren = item.children && item.children.length > 0;
             const isOpen = openDropdowns[item.title];
-            const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+            const isActive = isActiveParent(item.href, item.children);
 
             return (
               <div key={item.title}>
@@ -208,6 +293,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                   </div>
                   {hasChildren && (isOpen ? <IoChevronUp /> : <IoChevronDown />)}
                 </button>
+
                 {hasChildren && isOpen && renderChildren(item.children)}
               </div>
             );

@@ -1,6 +1,7 @@
 import MessageIcon from '@/public/contacts/icons/MessageIcon';
 import TagIcon from '@/public/sidebar/icons/TagIcon';
 import WarningIcon from '@/public/sidebar/icons/WarningIcon';
+import Link from 'next/link';
 import React from 'react';
 
 // Define the TypeScript interface for the props
@@ -11,6 +12,7 @@ interface ContactCardProps {
   statusType: string;
   message?: string;
   amount: string;
+  href:string;
 }
 
 const ContactCard: React.FC<ContactCardProps> = ({
@@ -20,10 +22,11 @@ const ContactCard: React.FC<ContactCardProps> = ({
   statusType,
   message,
   amount,
+  href
 }) => {
   return (
    
-      <div className="bg-[#202020] p-5 rounded-2xl border border-[#2c6a4b] min-h-[250px] flex flex-col justify-between">
+      <Link href={href} className=" cursor-pointer bg-[#202020] p-5 rounded-2xl border border-[#2c6a4b] min-h-[250px] flex flex-col justify-between">
         <h3 className="text-2xl text-white font-semibold mb-2">{title}</h3>
         <p className="text-lg text-white mb-4">{dateRange}</p>
         <div>
@@ -60,7 +63,7 @@ const ContactCard: React.FC<ContactCardProps> = ({
           ) : null}
         </div>
         <h4 className="text-[#21AF68] text-2xl font-semibold">{amount}</h4>
-      </div>
+      </Link>
   
   );
 };

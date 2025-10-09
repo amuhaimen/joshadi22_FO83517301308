@@ -1,6 +1,6 @@
 import teamImg from '@/public/Team2.png';
 import React from 'react'
-import SectionHeaderWidget from '../../_components/reusable/SectionHeaderWidget'
+import SectionHeaderWidget from '../../../../_components/reusable/SectionHeaderWidget'
 import p1 from '@/public/softwareImages/ss1.png'
 import p2 from '@/public/softwareImages/ss2.png'
 import Image from 'next/image'

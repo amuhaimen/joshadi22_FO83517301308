@@ -8,7 +8,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import ProjectOverviewCard from "../../../_components/reusable/ProjectOverviewCard";
+import ProjectOverviewCard from "../../../../../_components/reusable/ProjectOverviewCard";
 
 const monthlyData = [
   { category: "UI / UX", value: 275000, fill: "#FF708B", percentage: 20 },

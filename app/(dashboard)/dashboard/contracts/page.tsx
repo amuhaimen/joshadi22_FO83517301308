@@ -21,6 +21,7 @@ export default function page() {
                 message={item.message ?? ''} 
                 amount={item.amount ?? ''}  
                 statusType={item.statusType ?? ''} 
+                href={item.href}
             />
         ))
        }
