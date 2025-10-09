@@ -15,7 +15,7 @@ import {
   SoftwareDevIcon,
   WidgetStoreIcon,
   ContractsIcon,
-  BreifCaseIcon,
+  // BreifCaseIcon,
 } from "@/public/sidebar/icons/CustomIcons";
 import QuestionIcon from "@/public/sidebar/icons/Question";
 import logo from "@/public/header/images/logo.png";
@@ -26,6 +26,7 @@ type SubItem = {
   title: string;
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   href: string;
+  children?: SubItem[];
 };
 type MenuItem = {
   title: string;
@@ -78,14 +79,36 @@ const menuItems: Record<string, MenuItem[]> = {
       href: "/dashboard/contracts",
       children: [
         {
-          title: "Dashboard",
-          icon: DashboardIcon,
-          href: "/dashboard/contracts/c-dashboard",
+          title: "Contracts A",
+          href: "/dashboard/contracts/a",
+          children: [
+            { title: "Child 1", href: "/dashboard/contracts/a/child1" },
+            { title: "Child 2", href: "/dashboard/contracts/a/child2" },
+          ],
         },
         {
-          title: "Reports",
-          icon: BreifCaseIcon,
-          href: "/dashboard/contracts/reports",
+          title: "Contracts B",
+          href: "/dashboard/contracts/b",
+          children: [
+            { title: "Child 1", href: "/dashboard/contracts/b/child1" },
+            { title: "Child 2", href: "/dashboard/contracts/b/child2" },
+          ],
+        },
+        {
+          title: "Contracts C",
+          href: "/dashboard/contracts/c",
+          children: [
+            { title: "Child 1", href: "/dashboard/contracts/c/child1" },
+            { title: "Child 2", href: "/dashboard/contracts/c/child2" },
+          ],
+        },
+        {
+          title: "Contracts D",
+          href: "/dashboard/contracts/d",
+          children: [
+            { title: "Child 1", href: "/dashboard/contracts/d/child1" },
+            { title: "Child 2", href: "/dashboard/contracts/d/child2" },
+          ],
         },
       ],
     },
@@ -127,7 +150,6 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [manuallyClosedDropdown, setManuallyClosedDropdown] = useState<string | null>(null);
 
-  // Keep dropdown open if current path matches contracts children
   useEffect(() => {
     if (pathname.startsWith("/dashboard/contracts") && manuallyClosedDropdown !== "Contracts") {
       setOpenDropdown("Contracts");
@@ -159,14 +181,37 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
   const handleDropdownClick = (item: MenuItem) => {
     const isCurrentlyOpen = openDropdown === item.title;
-    
-    // Toggle dropdown
     toggleDropdown(item.title);
-    
-    // Navigate only when opening the dropdown (not when closing)
     if (!isCurrentlyOpen && item.href) {
       router.push(item.href);
     }
+  };
+
+  const renderChildren = (children?: SubItem[]) => {
+    if (!children) return null;
+    return (
+      <div className="ml-8 mt-2 space-y-2">
+        {children.map((child) => {
+          const isChildActive = pathname === child.href;
+          const hasGrandChildren = child.children && child.children.length > 0;
+          return (
+            <div key={child.href}>
+              <Link
+                href={child.href}
+                onClick={onClose}
+                className={`flex items-center justify-between gap-3 p-2 rounded-md text-sm transition-colors duration-150 ${
+                  isChildActive ? "bg-[#30c47a] text-white" : "text-gray-400 hover:text-white"
+                }`}
+              >
+                <span>{child.title}</span>
+                {hasGrandChildren && <IoChevronDown />}
+              </Link>
+              {hasGrandChildren && renderChildren(child.children)}
+            </div>
+          );
+        })}
+      </div>
+    );
   };
 
   return (
@@ -191,100 +236,28 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="p-4 space-y-2">
           {filteredMenuItems.map((item, index) => {
             const Icon = item.icon;
-            
-            // Dropdown case
-            if (item.children && item.children.length > 0) {
-              const isDropdownOpen = openDropdown === item.title;
-              const isContractsActive =
-                item.title === "Contracts" &&
-                pathname.startsWith("/dashboard/contracts");
-              
-              return (
-                <div key={index}>
-                  <button
-                    onClick={() => handleDropdownClick(item)}
-                    className={`flex w-full items-center justify-between p-3 rounded-lg transition-all duration-200 text-base ${
-                      isContractsActive
-                        ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold"
-                        : "text-[#E9E9EA] hover:font-semibold"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3.5 flex-1">
-                      {Icon && (
-                        <Icon
-                          className={`w-5 h-5 ${
-                            isContractsActive ? "text-blue-600" : "text-gray-500"
-                          }`}
-                        />
-                      )}
-                      <span className={`${isContractsActive ? "font-medium" : ""}`}>
-                        {item.title}
-                      </span>
-                    </div>
-                    <div className="p-1">
-                      {isDropdownOpen ? <IoChevronUp /> : <IoChevronDown />}
-                    </div>
-                  </button>
+            const isDropdownOpen = openDropdown === item.title;
+            const hasChildren = item.children && item.children.length > 0;
+            const isActive = pathname.startsWith(item.href || "");
 
-                  <div
-                    className={`ml-8 mt-2 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
-                      isDropdownOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    {item.children.map((child) => {
-                      const isChildActive = pathname === child.href;
-                      const ChildIcon = child.icon;
-                      return (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={onClose}
-                          className={`flex items-center gap-3 p-2 rounded-md text-sm transition-colors duration-150 ${
-                            isChildActive
-                              ? "bg-[#30c47a] text-white"
-                              : "text-gray-400 hover:text-white"
-                          }`}
-                        >
-                          {ChildIcon && (
-                            <ChildIcon
-                              className={`w-4 h-4 ${
-                                isChildActive ? "text-white" : "text-gray-500"
-                              }`}
-                            />
-                          )}
-                          <span>{child.title}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            }
-
-            // Normal single link
-            const isActive = pathname === item.href;
             return (
-              <Link
-                key={index}
-                href={item.href || "#"}
-                className={`flex items-center gap-3.5 p-3 rounded-lg transition-all duration-200 text-base ${
-                  isActive
-                    ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold"
-                    : "text-[#E9E9EA] hover:font-semibold"
-                }`}
-                onClick={onClose}
-              >
-                {Icon && (
-                  <Icon
-                    className={`w-5 h-5 ${
-                      isActive ? "text-blue-600" : "text-gray-500"
-                    }`}
-                  />
-                )}
-                <span className={`${isActive ? "font-medium" : ""}`}>
-                  {item.title}
-                </span>
-              </Link>
+              <div key={index}>
+                <button
+                  onClick={() => (hasChildren ? handleDropdownClick(item) : undefined)}
+                  className={`flex w-full items-center justify-between p-3 rounded-lg transition-all duration-200 text-base ${
+                    isActive
+                      ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold"
+                      : "text-[#E9E9EA] hover:font-semibold"
+                  }`}
+                >
+                  <div className="flex items-center gap-3.5 flex-1">
+                    {Icon && <Icon className={`w-5 h-5 ${isActive ? "text-blue-600" : "text-gray-500"}`} />}
+                    <span className={`${isActive ? "font-medium" : ""}`}>{item.title}</span>
+                  </div>
+                  {hasChildren && <div className="p-1">{isDropdownOpen ? <IoChevronUp /> : <IoChevronDown />}</div>}
+                </button>
+                {hasChildren && isDropdownOpen && renderChildren(item.children)}
+              </div>
             );
           })}
         </div>
@@ -305,9 +278,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               onClick={onClose}
             >
               <div className="w-5 h-5">{item.icon}</div>
-              <span className={`${isActive ? "font-medium" : ""}`}>
-                {item.title}
-              </span>
+              <span className={`${isActive ? "font-medium" : ""}`}>{item.title}</span>
             </Link>
           );
         })}
