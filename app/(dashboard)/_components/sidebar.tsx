@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { useAuth } from "../../context/AuthContext";
@@ -15,7 +15,7 @@ import {
   SoftwareDevIcon,
   WidgetStoreIcon,
   ContractsIcon,
-  BreifCaseIcon
+  BreifCaseIcon,
 } from "@/public/sidebar/icons/CustomIcons";
 import QuestionIcon from "@/public/sidebar/icons/Question";
 import logo from "@/public/header/images/logo.png";
@@ -71,7 +71,6 @@ const menuItems: Record<string, MenuItem[]> = {
     },
     { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
   ],
-  // contracts role (dropdown)
   contracts: [
     {
       title: "Contracts",
@@ -83,10 +82,10 @@ const menuItems: Record<string, MenuItem[]> = {
           icon: DashboardIcon,
           href: "/dashboard/contracts/c-dashboard",
         },
-        { 
-          title: "Reports", 
+        {
+          title: "Reports",
           icon: BreifCaseIcon,
-          href: "/dashboard/contracts/reports" 
+          href: "/dashboard/contracts/reports",
         },
       ],
     },
@@ -120,21 +119,19 @@ interface SidebarProps {
 }
 
 export default function Sidebar({ isOpen, onClose }: SidebarProps) {
+  const router = useRouter();
   const rawPath = usePathname();
   const pathname = rawPath || "";
   const { role } = useAuth();
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [manuallyClosedDropdown, setManuallyClosedDropdown] = useState<
-    string | null
-  >(null);
+  const [manuallyClosedDropdown, setManuallyClosedDropdown] = useState<string | null>(null);
 
-  // keep dropdown open if current path matches contracts children
+  // Keep dropdown open if current path matches contracts children
   useEffect(() => {
-    if (pathname.startsWith("/dashboard/contracts")) {
+    if (pathname.startsWith("/dashboard/contracts") && manuallyClosedDropdown !== "Contracts") {
       setOpenDropdown("Contracts");
-      setManuallyClosedDropdown(null); // reset manual close when navigating to contracts
-    } else if (manuallyClosedDropdown !== "Contracts") {
+    } else if (!pathname.startsWith("/dashboard/contracts") && manuallyClosedDropdown !== "Contracts") {
       setOpenDropdown(null);
     }
   }, [pathname, manuallyClosedDropdown]);
@@ -152,12 +149,24 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     setOpenDropdown((prev) => {
       const newState = prev === title ? null : title;
       if (newState === null) {
-        setManuallyClosedDropdown(title); // remember user closed it manually
+        setManuallyClosedDropdown(title);
       } else {
         setManuallyClosedDropdown(null);
       }
       return newState;
     });
+  };
+
+  const handleDropdownClick = (item: MenuItem) => {
+    const isCurrentlyOpen = openDropdown === item.title;
+    
+    // Toggle dropdown
+    toggleDropdown(item.title);
+    
+    // Navigate only when opening the dropdown (not when closing)
+    if (!isCurrentlyOpen && item.href) {
+      router.push(item.href);
+    }
   };
 
   return (
@@ -182,62 +191,44 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="p-4 space-y-2">
           {filteredMenuItems.map((item, index) => {
             const Icon = item.icon;
-            // dropdown case
+            
+            // Dropdown case
             if (item.children && item.children.length > 0) {
-              const isOpen = openDropdown === item.title;
+              const isDropdownOpen = openDropdown === item.title;
               const isContractsActive =
                 item.title === "Contracts" &&
                 pathname.startsWith("/dashboard/contracts");
+              
               return (
                 <div key={index}>
-                  <div
-                    className={`flex w-full items-center justify-between p-3 rounded-lg transition-all duration-200 text-base cursor-pointer
-          ${
-            isContractsActive
-              ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold"
-              : "text-[#E9E9EA] hover:font-semibold"
-          }`}
+                  <button
+                    onClick={() => handleDropdownClick(item)}
+                    className={`flex w-full items-center justify-between p-3 rounded-lg transition-all duration-200 text-base ${
+                      isContractsActive
+                        ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold"
+                        : "text-[#E9E9EA] hover:font-semibold"
+                    }`}
                   >
-                    <Link
-                      href={item.href || "#"}
-                      onClick={onClose}
-                      className="flex items-center gap-3.5 flex-1"
-                    >
+                    <div className="flex items-center gap-3.5 flex-1">
                       {Icon && (
                         <Icon
                           className={`w-5 h-5 ${
-                            isContractsActive
-                              ? "text-blue-600"
-                              : "text-gray-500"
+                            isContractsActive ? "text-blue-600" : "text-gray-500"
                           }`}
                         />
                       )}
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          toggleDropdown(item.title);
-                        }}
-                        className={`${isContractsActive ? "font-medium" : ""}`}
-                      >
+                      <span className={`${isContractsActive ? "font-medium" : ""}`}>
                         {item.title}
-                      </button>
-                    </Link>
-                    <button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        toggleDropdown(item.title);
-                      }}
-                      className="p-1"
-                    >
-                      {isOpen ? <IoChevronUp /> : <IoChevronDown />}
-                    </button>
-                  </div>
+                      </span>
+                    </div>
+                    <div className="p-1">
+                      {isDropdownOpen ? <IoChevronUp /> : <IoChevronDown />}
+                    </div>
+                  </button>
 
                   <div
-                    className={`ml-8 mt-2 space-y-2 overflow-hidden transition-[max-height] duration-200 ${
-                      isOpen ? "max-h-40" : "max-h-0"
+                    className={`ml-8 mt-2 space-y-2 overflow-hidden transition-all duration-300 ease-in-out ${
+                      isDropdownOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
                     }`}
                   >
                     {item.children.map((child) => {
@@ -248,7 +239,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           key={child.href}
                           href={child.href}
                           onClick={onClose}
-                          className={`flex items-center gap-3 p-2 rounded-md text-sm ${
+                          className={`flex items-center gap-3 p-2 rounded-md text-sm transition-colors duration-150 ${
                             isChildActive
                               ? "bg-[#30c47a] text-white"
                               : "text-gray-400 hover:text-white"
@@ -270,7 +261,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               );
             }
 
-            // normal single link
+            // Normal single link
             const isActive = pathname === item.href;
             return (
               <Link
@@ -324,5 +315,3 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     </aside>
   );
 }
-
-

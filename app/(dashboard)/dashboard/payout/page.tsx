@@ -226,9 +226,9 @@ export default function Page() {
               backgroundColor: "#1F1F1F",
               textColor: "#ffffff",
               fontSize: "14px",
-              padding:'20px 30px'
+              padding:'0px 0px'
             }}
-             cellBorderColor="#1F1F1F"
+            cellBorderColor="#1F1F1F"
             currentPage={currentPage}
             itemsPerPage={rowsPerPage}
             onPageChange={handlePageChange} // Pass the page change handler
