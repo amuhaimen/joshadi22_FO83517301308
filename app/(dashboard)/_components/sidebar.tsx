@@ -110,7 +110,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     const currentItems = menuItems[role || "contracts"] || [];
     openAll(currentItems);
     setOpenDropdowns(initialState);
-  }, [role,menuItems]);
+  }, [role]);
 
   /* ============== Collapse “Contracts” outside its route ============== */
   useEffect(() => {
