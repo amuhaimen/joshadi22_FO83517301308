@@ -8,9 +8,7 @@ import { IoChevronDown, IoChevronUp } from "react-icons/io5";
 import { useAuth } from "../../context/AuthContext";
 import {
   DashboardIcon,
-  // InvestorIcon,
   JobSearchIcon,
-  // UiIcon,
   SettingsIcon,
   SoftwareDevIcon,
   WidgetStoreIcon,
@@ -26,6 +24,7 @@ import contractsData from "../../(dashboard)/dashboard/contracts/data/contactsDa
 type SubItem = {
   title: string;
   href: string;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   children?: SubItem[];
 };
 type MenuItem = {
@@ -34,19 +33,6 @@ type MenuItem = {
   href: string;
   children?: SubItem[];
 };
-
-// ✅ Dynamically build Contract section from JSON
-// const contractsChildren = contractsData.map((contract) => ({
-  
-//   title: contract.title,
-//   href: `${contract.href}`,
-//   children: [
-//     { title: "Dashboard", href: `${contract.href}/dashboard` },
-//     { title: "Workspace", href: `${contract.href}/workspace` },
-//   ],
-// }));
-
-
 
 const bottomMenuItems = [
   { title: "Store", icon: <WidgetStoreIcon />, href: "/dashboard/widget-store" },
@@ -65,142 +51,82 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { role } = useAuth();
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({});
 
-  // 🟢 Redirect /dashboard → /dashboard/contracts
-  // useEffect(() => {
-  //   if (pathname === "/dashboard" || pathname === "/dashboard/") {
-  //     router.replace("/dashboard/contracts");
-  //   }
-  // }, [pathname, router]);
-
-
-// =============================================================
-
-
- const contractsChildren = contractsData.map((contract) => {
+  /* ================= Build Contracts Children (role-wise) ================= */
+  const contractsChildren: SubItem[] = contractsData.map((contract) => {
     const base = `${contract.href}`;
-    const userRole = role || "manager"; // fallback if role is undefined
-    return {
-      title: contract.title,
-      href: base,
-      children: [
-        { title: "Dashboard", href: `${base}/${userRole}` },
-        { title: "Workspace", href: `${base}/${userRole}-workspace` },
-      ],
-    };
+    const userRole = role || "manager"; // fallback
+
+    const children: SubItem[] =
+      userRole === "manager" || userRole === "investor"
+        ? [{ title: "Dashboard", icon: DashboardIcon, href: `${base}/${userRole}` }]
+        : [
+            { title: "Dashboard", icon: DashboardIcon, href: `${base}/${userRole}` },
+            { title: "Workspace", icon: SettingsIcon, href: `${base}/${userRole}-workspace` },
+          ];
+
+    return { title: contract.title, href: base, children };
   });
-// =============================================================
 
-const menuItems: Record<string, MenuItem[]> = {
+  const menuItems: Record<string, MenuItem[]> = {
+    manager: [
+      { title: "Contracts", icon: ContractsIcon, href: "/dashboard/contracts", children: contractsChildren },
+      { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+      { title: "Time Keeping", icon: SoftwareDevIcon, href: "/dashboard/time-keeping" },
+      { title: "Project Manager Payout", icon: JobSearchIcon, href: "/dashboard/payout" },
+      { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+    ],
+    investor: [
+      { title: "Contracts", icon: ContractsIcon, href: "/dashboard/contracts", children: contractsChildren },
+      { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+        { title: "Time Keeping", icon: SoftwareDevIcon, href: "/dashboard/time-keeping" },
+      { title: "Investment Ideas", icon: JobSearchIcon, href: "/dashboard/investment-ideas" },
+      { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+    ],
+    designer: [
+      { title: "Contracts", icon: ContractsIcon, href: "/dashboard/contracts", children: contractsChildren },
+      { title: "Certificate Store", icon: DashboardIcon, href: "/dashboard/certification-store" },
+        { title: "Time Keeping", icon: SoftwareDevIcon, href: "/dashboard/time-keeping" },
+      { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+      { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+    ],
+    developer: [
+      { title: "Contracts", icon: ContractsIcon, href: "/dashboard/contracts", children: contractsChildren },
+       { title: "Certificate Store", icon: DashboardIcon, href: "/dashboard/certification-store" },
+            { title: "Time Keeping", icon: SoftwareDevIcon, href: "/dashboard/time-keeping" },
+      { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
+      { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
+    ],
+  };
 
-
- manager: [
-    {
-      title: "Contracts",
-      icon: ContractsIcon,
-      href: "/dashboard/contracts",
-      children: contractsChildren,
-    },
-    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard" },
-    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
-    {title:"Time Keeping",icon: SoftwareDevIcon,href:"/dashboard/time-keeping"},
-    // { title: "Investor", icon: InvestorIcon, href: "/dashboard/investor" },
-    {title:"Project Manager Payout",icon:JobSearchIcon,href:"/dashboard/payout"},
-    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
-  ],
-  investor: [
-    {
-      title: "Contracts",
-      icon: ContractsIcon,
-      href: "/dashboard/contracts",
-      children: contractsChildren,
-    },
-    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/investor" },
-    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
-    {title:"Investment Ideas",icon:JobSearchIcon,href:"/dashboard/investment-ideas"},
-    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
-  ],
-  designer: [
-    {
-      title: "Contracts",
-      icon: ContractsIcon,
-      href: "/dashboard/contracts",
-      children: contractsChildren,
-    },
-    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/designer" },
-    {title:"Certificate Store",icon:DashboardIcon,href:'/dashboard/certification-store'},
-    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
-    // {
-    //   title: "UI / UX Designer",
-    //   icon: UiIcon,
-    //   href: "/dashboard/ui_ux_designer",
-    // },
-    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
-  ],
-  developer: [
-    {
-      title: "Contracts",
-      icon: ContractsIcon,
-      href: "/dashboard/contracts",
-      children: contractsChildren,
-    },
-    // { title: "Dashboard", icon: DashboardIcon, href: "/dashboard/developer" },
-    { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
-    // {
-    //   title: "Software Developer",
-    //   icon: SoftwareDevIcon,
-    //   href: "/dashboard/software_dev",
-    // },
-    { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
-  ],
-
-  // contracts: [
-  //   {
-  //     title: "Contracts",
-  //     icon: ContractsIcon,
-  //     href: "/dashboard/contracts",
-  //     children: contractsChildren,
-  //   },
-  //   { title: "Job Search", icon: JobSearchIcon, href: "/dashboard/job_search" },
-  //   { title: "Settings", icon: SettingsIcon, href: "/dashboard/settings" },
-  // ],
-};
-
-
-
-
-  // 🔥 Run only once on mount — open all dropdowns
+  /* ================= Open all dropdowns on mount ================= */
   useEffect(() => {
     const initialState: Record<string, boolean> = {};
     const openAll = (items: (MenuItem | SubItem)[]) => {
       items.forEach((item) => {
         initialState[item.title] = true;
-        if (item.children) openAll(item.children);
+        if ("children" in item && item.children) openAll(item.children);
       });
     };
     const currentItems = menuItems[role || "contracts"] || [];
     openAll(currentItems);
     setOpenDropdowns(initialState);
-  }, [role]);
+  }, [role,menuItems]);
 
-  // 🧩 Collapse only “Contracts” when outside /dashboard/contracts
+  /* ============== Collapse “Contracts” outside its route ============== */
   useEffect(() => {
     setOpenDropdowns((prev) => ({
       ...prev,
-      Contracts: pathname.startsWith("/dashboard/contracts") ? true : false,
+      Contracts: pathname.startsWith("/dashboard/contracts"),
     }));
   }, [pathname]);
 
-  const toggleDropdown = (title: string) => {
-    setOpenDropdowns((prev) => ({
-      ...prev,
-      [title]: !prev[title],
-    }));
-  };
+  const toggleDropdown = (title: string) =>
+    setOpenDropdowns((prev) => ({ ...prev, [title]: !prev[title] }));
 
-  // ✅ Utility: checks if a route or its children are active
+  /* ============== Active checker ============== */
   const isActiveParent = (parentPath: string, children?: SubItem[]): boolean => {
     if (pathname === parentPath || pathname.startsWith(parentPath + "/")) return true;
-    if (children && children.length > 0) {
+    if (children?.length) {
       return children.some(
         (child) =>
           pathname === child.href ||
@@ -211,16 +137,17 @@ const menuItems: Record<string, MenuItem[]> = {
     return false;
   };
 
-  // ✅ Recursive renderer for children
-  const renderChildren = (children?: SubItem[]) => {
+  /* ============== Recursive children renderer (depth-aware) ============== */
+  const renderChildren = (children?: SubItem[], depth = 1) => {
     if (!children) return null;
 
     return (
-      <div className="ml-8 mt-2 space-y-2">
+      <div className={`${depth === 1 ? "ml-8" : "ml-12"} mt-2 space-y-2`}>
         {children.map((child) => {
-          const hasChildren = child.children && child.children.length > 0;
+          const hasChildren = !!child.children?.length;
           const isActive = isActiveParent(child.href, child.children);
           const isOpen = openDropdowns[child.title];
+          const IconComp = child.icon;
 
           return (
             <div key={child.href}>
@@ -235,11 +162,16 @@ const menuItems: Record<string, MenuItem[]> = {
                     : "text-gray-400 hover:text-white"
                 }`}
               >
-                <span>{child.title}</span>
+                {/* depth 1: icon-only (আগের মতো), depth >= 2: icon + title */}
+                <span className="flex items-center gap-2">
+                  {IconComp && <IconComp className="w-5 h-5" />}
+                  {depth >= 2 ? <span>{child.title}</span> : !IconComp ? <span>{child.title}</span> : null}
+                </span>
+
                 {hasChildren && (isOpen ? <IoChevronUp /> : <IoChevronDown />)}
               </button>
 
-              {hasChildren && isOpen && renderChildren(child.children)}
+              {hasChildren && isOpen && renderChildren(child.children, depth + 1)}
             </div>
           );
         })}
@@ -270,31 +202,42 @@ const menuItems: Record<string, MenuItem[]> = {
         <div className="p-4 space-y-2">
           {items.map((item) => {
             const Icon = item.icon;
-            const hasChildren = item.children && item.children.length > 0;
+            const hasChildren = !!item.children?.length;
             const isOpen = openDropdowns[item.title];
             const isActive = isActiveParent(item.href, item.children);
 
             return (
-              <div key={item.title}>
+              <div key={item.title} className="relative">
+                {/* Main parent active design */}
+                {isActive && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-1/2 -translate-y-1/2 h-8 w-1.5 rounded-r bg-[#21AF68]"
+                  />
+                )}
+
                 <button
                   onClick={() => {
                     if (hasChildren) toggleDropdown(item.title);
                     router.push(item.href);
                   }}
-                  className={`flex w-full items-center justify-between p-3 rounded-lg transition-all duration-200 text-base ${
+                  aria-current={isActive ? "page" : undefined}
+                  className={`flex w-full items-center justify-between p-3 pl-5 rounded-lg transition-all duration-200 text-base ${
                     isActive
-                      ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold"
-                      : "text-[#E9E9EA] hover:font-semibold"
+                      ? "bg-gradient-to-r from-[#183823] via-[#193928] to-[#174a32] text-white font-semibold ring-1 ring-[#1f5a3a]/50"
+                      : "text-[#E9E9EA] hover:font-semibold hover:bg-white/5"
                   }`}
                 >
+                  {/* Main menu: icon + title */}
                   <div className="flex items-center gap-3.5 flex-1">
                     {Icon && <Icon className="w-5 h-5" />}
                     <span>{item.title}</span>
                   </div>
+
                   {hasChildren && (isOpen ? <IoChevronUp /> : <IoChevronDown />)}
                 </button>
 
-                {hasChildren && isOpen && renderChildren(item.children)}
+                {hasChildren && isOpen && renderChildren(item.children, 1)}
               </div>
             );
           })}

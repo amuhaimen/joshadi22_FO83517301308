@@ -241,7 +241,7 @@ const [currentPage, setCurrentPage] = useState(1);
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
                 >
-                  <RightArrowPaginationIcon />
+                   <RightArrowPaginationIcon/>
                 </button>
               </div>
             </div>

@@ -7,19 +7,26 @@ import FinancialSum from "./_components/FinancialSum";
  
 import { TBarChart } from "./_components/TBarChart";
 import { TPieChart } from "./_components/TPieChart";
+import DarkScheduler from "./_components/DarkScheduler";
+ 
  
  
 
 export default function page() {
   return (
     <div>
+    
       <div>
+
       <h2 className=" text-white text-[32px] font-medium">Timekeeping Overview</h2>
        <p className=" text-[#A5A5AB] text-sm font-medium">Apr 22 - Apr 22/2024</p>
       </div>
       <div className=" grid grid-cols-1 lg:grid-cols-3 gap-6   p-6   bg-[#1F1F1F]">
         <div className="   pb-3 lg:col-span-2  ">
-     
+          <div className=" mb-6">
+
+       <DarkScheduler/>
+          </div>
           {/* table */}
           <TimeKeepingTable />
           {/* charts */}
